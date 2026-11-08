@@ -3,21 +3,21 @@
     {
       "tenant_name": {
         "value": "KESTREL ANALYTICS USA LLC",
-        "citation": "[Paragraph 102] KESTREL ANALYTICS USA LLC, a Delaware limited liability company (\"Tenant\").",
-        "confidence": 0.95
+        "citation": "[Paragraph 102] THIS LEASE is made as of the 21st day of August, 2025, by and between 850 N. HARLOW AVENUE LLC, an Illinois limited liability company (\"Landlord\"), and KESTREL ANALYTICS USA LLC, a Delaware limited liability company (\"Tenant\").",
+        "confidence": 1.0
       },
       "landlord_legal_name": {
         "value": "850 N. HARLOW AVENUE LLC",
-        "citation": "[Paragraph 102] 850 N. HARLOW AVENUE LLC, an Illinois limited liability company (\"Landlord\")",
-        "confidence": 0.95
+        "citation": "[Paragraph 102] THIS LEASE is made as of the 21st day of August, 2025, by and between 850 N. HARLOW AVENUE LLC, an Illinois limited liability company (\"Landlord\"), and KESTREL ANALYTICS USA LLC, a Delaware limited liability company (\"Tenant\").",
+        "confidence": 1.0
       },
       "property_name": {
         "value": "ONE HARLOW PLACE",
-        "citation": "[Paragraph 103] located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE",
-        "confidence": 0.95
+        "citation": "[Paragraph 103] located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
+        "confidence": 0.9
       },
       "building_address": {
-        "value": "850 N. HARLOW AVENUE, Naperville, Illinois 60540",
+        "value": "ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
         "citation": "[Paragraph 103] commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
         "confidence": 0.95
       },
@@ -38,7 +38,7 @@
       },
       "permitted_use": {
         "value": "general office purposes and no other purpose",
-        "citation": "[Paragraph 117] OCCUPANCY. Tenant shall use and occupy the Premises for general office purposes and no other purpose.",
+        "citation": "[Paragraph 117] Tenant shall use and occupy the Premises for general office purposes and no other purpose.",
         "confidence": 0.95
       },
       "lease_execution_date": {
@@ -52,26 +52,26 @@
         "confidence": 0.95
       },
       "rent_commencement_date": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": "2026-01-01",
+        "citation": "[Paragraph 114] beginning as of the commencement of the Term, monthly Base Rent shall abate in an amount equal to the first three (3) full calendar months of Base Rent.",
+        "confidence": 0.85
       },
       "lease_expiration_date": {
         "value": "2027-04-30",
-        "citation": "[Paragraph 103] terminating on the 30th day of April, 2027",
+        "citation": "[Paragraph 103] terminating on the 30th day of April, 2027 (the \"Term\"), both dates inclusive, unless sooner terminated as provided herein.",
         "confidence": 0.95
       },
       "lease_term_months": {
         "value": 19,
         "citation": "[Paragraph 103] for the term of one (1) year and seven (7) months, commencing on the 1st day of October, 2025 and terminating on the 30th day of April, 2027",
-        "confidence": 0.95
+        "confidence": 1.0
       },
       "rent_schedule_start_dates": {
         "value": [
           "2025-10-01"
         ],
         "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
-        "confidence": 0.95
+        "confidence": 1.0
       },
       "rent_schedule_end_dates": {
         "value": [
@@ -82,7 +82,7 @@
       },
       "rent_schedule_monthly_rent": {
         "value": [
-          2845
+          2845.0
         ],
         "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
         "confidence": 0.95
@@ -107,7 +107,7 @@
       "free_rent_months": {
         "value": 3,
         "citation": "[Paragraph 114] monthly Base Rent shall abate in an amount equal to the first three (3) full calendar months of Base Rent.",
-        "confidence": 0.95
+        "confidence": 1.0
       },
       "security_deposit_amount": {
         "value": null,
@@ -135,7 +135,7 @@
         "confidence": 0.0
       },
       "electricity_provision": {
-        "value": "Separately metered and billed directly to Tenant",
+        "value": "separately metered and billed directly to, and be the sole responsibility of, Tenant by Commonwealth Edison",
         "citation": "[Paragraph 126] Electricity for all receptacles on the Premises and for all lighting on the Premises and DDC boxes for ventilation and secondary heating shall be separately metered and billed directly to, and be the sole responsibility of, Tenant by Commonwealth Edison.",
         "confidence": 0.95
       },
@@ -212,19 +212,19 @@
     }
   ],
   "metadata": {
-    "model_calls": 20,
+    "model_calls": 44,
     "failed_calls": 0,
     "parse_failures": 0,
-    "tokens_in": 62545,
-    "tokens_out": 26279,
-    "cost_usd": 0.14545499999999995,
-    "latency_ms": 78580,
+    "tokens_in": 125502,
+    "tokens_out": 51812,
+    "cost_usd": 0.28842150000000005,
+    "latency_ms": 348131,
     "models": {
       "google/gemini-3.8-flash": {
-        "calls": 20,
-        "tokens_in": 62545,
-        "tokens_out": 26279,
-        "cost_usd": 0.14545499999999995
+        "calls": 44,
+        "tokens_in": 125502,
+        "tokens_out": 51812,
+        "cost_usd": 0.28842150000000005
       }
     }
   },

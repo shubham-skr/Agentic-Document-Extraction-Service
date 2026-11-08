@@ -3,31 +3,31 @@
     {
       "tenant_name": {
         "value": "KRESTMOOR INCORPORATED",
-        "citation": "[Page 1] KRESTMOOR INCORPORATED, an Illinois corporation, (\"Tenant\").",
-        "confidence": 0.95,
+        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010, by and between 250 S. HARBOR LLC, an Illinois\nlimited liability company, (\"Landlord\") and KRESTMOOR INCORPORATED, an Illinois corporation, (\"Tenant\").",
+        "confidence": 1.0,
         "page_numbers": [
           1
         ]
       },
       "landlord_legal_name": {
         "value": "250 S. HARBOR LLC",
-        "citation": "[Page 1] 250 S. HARBOR LLC, an Illinois limited liability company, (\"Landlord\")",
-        "confidence": 0.95,
+        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010, by and between 250 S. HARBOR LLC, an Illinois\nlimited liability company, (\"Landlord\")",
+        "confidence": 1.0,
         "page_numbers": [
           1
         ]
       },
       "property_name": {
         "value": "250 South Harbor",
-        "citation": "[Page 1] 250 South Harbor",
-        "confidence": 0.9,
+        "citation": "[Page 1] OFFICE BUILDING LEASE\n250 South Harbor",
+        "confidence": 0.85,
         "page_numbers": [
           1
         ]
       },
       "building_address": {
         "value": "250 South Harbor Street, Chicago, Illinois 60606",
-        "citation": "[Page 3] 250 South Harbor Street,\nChicago, Illinois 60606",
+        "citation": "[Page 3] known as 250 South Harbor Street,\nChicago, Illinois 60606,",
         "confidence": 0.95,
         "page_numbers": [
           3
@@ -35,31 +35,31 @@
       },
       "premises": {
         "value": "Suite 500",
-        "citation": "[Page 1] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building",
+        "citation": "[Page 3] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building",
         "confidence": 0.95,
         "page_numbers": [
-          1
+          3
         ]
       },
       "rentable_square_footage": {
         "value": 6840,
-        "citation": "[Page 1] comprised of a total of approximately 6,840 rentable square feet",
-        "confidence": 0.95,
-        "page_numbers": [
-          1
-        ]
+        "citation": "comprised of a total of approximately 6,840 rentable square feet known as\nSuite 500",
+        "confidence": 1.0
       },
       "pro_rata_share": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": 12.855,
+        "citation": "[Page 4] Tenant's Proportionate Share for purposes of Additional Rent is 12.855%.",
+        "confidence": 0.95,
+        "page_numbers": [
+          4
+        ]
       },
       "permitted_use": {
         "value": "operation of law office or other general office purpose",
-        "citation": "[Page 5] 3. OCCUPANCY. Tenant shall use and occupy the Premises for the operation of law office or other general office purpose.",
-        "confidence": 0.9,
+        "citation": "3. OCCUPANCY. Tenant shall use and occupy the Premises for the operation of law office or other general\noffice purpose.",
+        "confidence": 0.95,
         "page_numbers": [
-          5
+          4
         ]
       },
       "lease_execution_date": {
@@ -80,7 +80,7 @@
       },
       "rent_commencement_date": {
         "value": "2010-08-01",
-        "citation": "[Page 3] commencing on the 1* day of August, 2010",
+        "citation": "commencing on the 1* day of August, 2010, and terminating on the 28\" day of February, 2021 (the \"Term\"), both dates inclusive",
         "confidence": 0.95,
         "page_numbers": [
           3
@@ -88,7 +88,7 @@
       },
       "lease_expiration_date": {
         "value": "2021-02-28",
-        "citation": "[Page 3] terminating on the 28\" day of February, 2021",
+        "citation": "[Page 3] terminating on the 28\" day of February, 2021 (the \"Term\"), both dates inclusive",
         "confidence": 0.95,
         "page_numbers": [
           3
@@ -96,7 +96,7 @@
       },
       "lease_term_months": {
         "value": 127,
-        "citation": "[Page 2] for the term of Ten (10) years Seven (7) months commencing on the 1* day of August, 2010, and terminating on the 28\" day of February, 2021",
+        "citation": "[Page 2] for the term of Ten (10) years Seven (7) months commencing on the 1* day of August, 2010,\nand terminating on the 28\" day of February, 2021 (the \"Term\")",
         "confidence": 0.95,
         "page_numbers": [
           2
@@ -120,7 +120,7 @@
           "2012-07-31",
           "2021-02-28"
         ],
-        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
         "confidence": 0.95,
         "page_numbers": [
           2
@@ -132,7 +132,7 @@
           12196,
           14554
         ],
-        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
         "confidence": 0.95,
         "page_numbers": [
           2
@@ -144,8 +144,8 @@
           21.4,
           25.53
         ],
-        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.9,
+        "citation": "[Page 2] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building ... PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.95,
         "page_numbers": [
           2
         ]
@@ -166,7 +166,7 @@
       "free_rent_months": {
         "value": 0,
         "citation": "[Page 2] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever.",
-        "confidence": 0.9,
+        "confidence": 0.95,
         "page_numbers": [
           2
         ]
@@ -200,15 +200,18 @@
       "base_year_taxes": {
         "value": 2011,
         "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Taxes an amount equal to Tenant's Proportionate Share (as defined below) of the Taxes which are in excess of the Taxes paid in the Base Year of 2011.",
-        "confidence": 1.0,
+        "confidence": 0.95,
         "page_numbers": [
           3
         ]
       },
       "electricity_provision": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": "Monthly Electricity Usage Fee based on Tenant's actual usage",
+        "citation": "[Page 5] Tenant shall pay to Landlord as Additional Rent for electricity usage, as set forth in Paragraph 6A(a) hereinbelow, a monthly Electricity Usage Fee based on Tenant's actual usage thereof (if applicable).",
+        "confidence": 0.9,
+        "page_numbers": [
+          5
+        ]
       },
       "parking_spaces": {
         "value": null,
@@ -227,8 +230,11 @@
       },
       "renewal_option_exists": {
         "value": true,
-        "citation": "31. OPTION TO RENEW.",
-        "confidence": 0.65
+        "citation": "[Page 2] 31. OPTION TO RENEW.",
+        "confidence": 0.65,
+        "page_numbers": [
+          2
+        ]
       },
       "renewal_options_count": {
         "value": null,
@@ -248,7 +254,7 @@
       "early_termination_right": {
         "value": true,
         "citation": "[Page 2] 32. OPTION TO TERMINATE.",
-        "confidence": 0.85,
+        "confidence": 0.9,
         "page_numbers": [
           2
         ]
@@ -286,19 +292,25 @@
     }
   ],
   "metadata": {
-    "model_calls": 20,
+    "model_calls": 42,
     "failed_calls": 0,
     "parse_failures": 0,
-    "tokens_in": 68681,
-    "tokens_out": 34881,
-    "cost_usd": 0.18231450000000002,
-    "latency_ms": 243486,
+    "tokens_in": 132547,
+    "tokens_out": 59523,
+    "cost_usd": 0.32812775000000005,
+    "latency_ms": 484371,
     "models": {
       "google/gemini-3.8-flash": {
-        "calls": 20,
-        "tokens_in": 68681,
-        "tokens_out": 34881,
-        "cost_usd": 0.18231450000000002
+        "calls": 41,
+        "tokens_in": 131178,
+        "tokens_out": 59063,
+        "cost_usd": 0.31986975000000006
+      },
+      "google/gemini-3.1-pro-preview": {
+        "calls": 1,
+        "tokens_in": 1369,
+        "tokens_out": 460,
+        "cost_usd": 0.008258
       }
     }
   },

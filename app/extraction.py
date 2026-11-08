@@ -118,7 +118,7 @@ def _citation_ok(citation, source):
  present=sum(1 for t in unique if t in src)
  return present >= min(4, max(2, int(len(unique)*0.55)))
 
-def retrieve(text, spec, max_chars=18000):
+def retrieve(text, spec, max_chars=18000, max_hits=55):
  # IDF-weighted field retrieval: rare field-specific evidence beats repeated boilerplate.
  stop={'the','and','for','from','with','that','this','are','was','were','has','have','a','an','of','to','in','as','if','it','its','or','be','by','on','is','whether','only','when','where','what','how','same','each','one','per'}
  aliases=spec.get('aliases',[]) if isinstance(spec.get('aliases'),list) else []
@@ -140,7 +140,7 @@ def retrieve(text, spec, max_chars=18000):
  if not scored:return text[:max_chars]
  scored.sort(reverse=True)
  selected=set()
- for score,i in scored[:55]:
+ for score,i in scored[:max_hits]:
   selected.update(range(max(0,i-2),min(len(lines),i+3)))
  chosen=[]; used=0
  # Emit in document order, but only retain lines that fit the evidence budget.
@@ -440,14 +440,12 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
  if parsed['kind'] in ('xlsx','csv'):
   result=extract_tabular(parsed,schema)
   if result is not None:
-   # CSV report-level metadata is above the header, not in the detail rows.
    if parsed['kind']=='csv':
     rows=(parsed.get('tables') or [{}])[0].get('rows',[])
     prop=fmt(rows[1][0]) if len(rows)>1 and rows[1] else None
     for entry in result:
      if 'property_name' in fields and prop: entry['property_name']=make_field(prop,'[CSV row 2] '+prop,.99,typ='string')
    return result
- # Use geometry-aware extraction for selectable-text budget statements; avoid losing rows to generative omission.
  if parsed['kind'] == 'pdf':
   deterministic_budget = extract_budget_pdf(parsed, schema)
   if deterministic_budget is not None:
@@ -456,7 +454,6 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
   deterministic_offering = extract_offering_pdf(parsed, schema)
   if deterministic_offering is not None:
    return deterministic_offering
- # PDF/other tabular reports with a primary key: extract rows per page in parallel.
  if primary and parsed['kind']=='pdf':
   async def page_rows(page):
    page_no=page['page']; page_text=page.get('layout_text') or page.get('text','')
@@ -464,8 +461,7 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
    payload={'task':'Extract every detail row belonging to the requested table on this page. Do not emit section headers, subtotals, grand totals or commentary-only rows.','document_profile':profile,'schema':schema,'page_number':page_no,'page_text':page_text,'document_context':text[:5000],'output_format':{'entries':[{'field_key':{'value':'scalar or null','citation':'[Page N] verbatim source excerpt','confidence':'0..1','page_numbers':[page_no]}}]},'rules':['Return all schema fields in every row.','The primary field identifies one row.','Do not invent missing values.','Use null for unsupported values.','Only rows physically present on this page.']}
    try:
     raw=await llm.complete([{'role':'system','content':SYSTEM+' You are extracting table rows. Return JSON only with an entries array.'},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}],model=settings.fast_model,max_tokens=6500)
-    try:
-     obj=parse_json(raw)
+    try: obj=parse_json(raw)
     except Exception:
      llm.parse_failures += 1
      raise
@@ -486,54 +482,96 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
     log.warning('Page %s table extraction failed: %s',page_no,e); return []
   page_results=await asyncio.gather(*(page_rows(p) for p in parsed.get('pages',[])))
   rows=[r for part in page_results for r in part]
-  # De-duplicate repeated headers/rows by primary key, keeping first supported occurrence.
   unique={}
   for r in rows: unique.setdefault(str(r[primary]['value']),r)
   if unique:return list(unique.values())
- # One LLM request per coherent field group, not per page or field.
- groups=[]
- keys=list(fields)
- # Keep arrays and related lease schedule fields together; use modest groups otherwise.
+
+ # First pass uses small coherent groups. A second, targeted pass asks about each
+ # unresolved field independently with more evidence; nulls from the first pass are
+ # therefore not silently accepted merely because one grouped response was weak.
  group_size = 2 if schema.get('name') == 'lease_abstraction' else 4
- for i in range(0,len(keys),group_size):groups.append(keys[i:i+group_size])
- async def extract_group(group):
-  fobj={k:{'name':fields[k].get('name',k),'description':fields[k].get('description',''),'normalized':normalized.get(k,{}),'primary':fields[k].get('primary',False)} for k in group}
+ groups=[list(fields)[i:i+group_size] for i in range(0,len(fields),group_size)]
+ retry_keys=set()
+
+ async def request_fields(group, retry=False):
+  fobj={k:{'name':fields[k].get('name',k),'description':fields[k].get('description',''),
+           'normalized':normalized.get(k,{}),'primary':fields[k].get('primary',False)} for k in group}
   evidence_parts=[]
   for k in group:
    retrieval_query=dict(normalized.get(k,{}) or {})
    retrieval_query.update({'key':k,'name':fields[k].get('name',k),'description':fields[k].get('description','')})
-   evidence_parts.append('--- EVIDENCE FOR '+k+' ---\n'+retrieve(text,retrieval_query,max_chars=5200))
+   evidence_parts.append('--- EVIDENCE FOR '+k+' ---\n'+retrieve(
+    text,retrieval_query,max_chars=9000 if retry else 5200,max_hits=90 if retry else 55))
   evidence='\n\n'.join(evidence_parts)
-  user={'document_profile':profile,'fields':fobj,'source_evidence':evidence,'required_output':{k:{'value':'scalar | array | null','citation':'verbatim excerpt prefixed with actual locator','confidence':'0..1','page_numbers':'optional array of 1-based page numbers','source_locations':'optional cell refs'} for k in group},'rules':['Return exactly these keys.','No facts outside source evidence.','For null use empty citation and confidence 0.','If multiple values are requested, return aligned arrays.','For PDF cite [Page N], for DOCX cite [Paragraph N] or [Table N row N], for spreadsheets cite [Sheet!Cell] or [Row N].']}
-  try:
-   raw=await llm.complete([{'role':'system','content':SYSTEM},{'role':'user','content':json.dumps(user,ensure_ascii=False)}],model=settings.fast_model,max_tokens=3500)
-   try:
-    obj=parse_json(raw)
-   except Exception:
-    llm.parse_failures += 1
-    raise
-   if isinstance(obj,dict) and isinstance(obj.get('fields'),dict):obj=obj['fields']
-   result={}
-   for k in group:
-    item=obj.get(k,{}) if isinstance(obj,dict) else {}
-    if not isinstance(item,dict):item={'value':item}
-    val=item.get('value'); cit=str(item.get('citation') or '')
-    typ=normalized.get(k,{}).get('type') or infer_type(k,fields[k].get('description',''))
-    pages=item.get('page_numbers') or [int(x) for x in re.findall(r'\[Page\s+(\d+)\]',cit,re.I)]
-    locs=item.get('source_locations') or re.findall(r'\[(?:Sheet\s+)?[^\]]+![A-Z]+\d+\]',cit)
-    if val is not None and (not cit or not _citation_ok(cit,text)):
-     log.warning('Rejecting unsupported citation for field %s',k); val=None; cit=''
-    result[k]=make_field(val,cit,item.get('confidence',.65),pages,locs,typ,_array_item_type(k,fields[k].get('description','')))
-   return result
-  except Exception as e:
-   log.warning('Extraction group failed; returning nulls for %s: %s', ', '.join(group), e)
-   llm.failed_calls += 1
-   return {k:empty_field() for k in group}
+  rules=['Return exactly these keys.','Never use facts outside the supplied source evidence.',
+         'For null use empty citation and confidence 0.','If multiple values are requested, return aligned arrays.',
+         'Copy citation excerpts verbatim from the evidence; do not paraphrase them.',
+         'For PDF cite [Page N], for DOCX cite [Paragraph N] or [Table N row N], for spreadsheets cite [Sheet!Cell] or [Row N].']
+  if retry:
+   rules += ['This is a focused recovery attempt for unresolved fields. Search all supplied evidence carefully before returning null.',
+             'Do not repeat a prior guess. A non-null value is accepted only with a verbatim supporting excerpt.',
+             'For schedules, return every period as an aligned array; do not omit later periods.']
+  user={'document_profile':profile,'fields':fobj,'source_evidence':evidence,
+        'required_output':{k:{'value':'scalar | array | null','citation':'verbatim excerpt prefixed with actual locator',
+                               'confidence':'0..1','page_numbers':'optional array of 1-based page numbers',
+                               'source_locations':'optional cell refs'} for k in group},'rules':rules}
+  raw=await llm.complete([{'role':'system','content':SYSTEM},{'role':'user','content':json.dumps(user,ensure_ascii=False)}],
+                         model=settings.fast_model,max_tokens=3000 if retry else 3500)
+  try: obj=parse_json(raw)
+  except Exception:
+   llm.parse_failures += 1
+   raise
+  if isinstance(obj,dict) and isinstance(obj.get('fields'),dict): obj=obj['fields']
+  result={}
+  needs_retry=set()
+  for k in group:
+   present=isinstance(obj,dict) and k in obj
+   item=obj.get(k,{}) if isinstance(obj,dict) else {}
+   if not isinstance(item,dict): item={'value':item} if item is not None else {}
+   if not present or 'value' not in item:
+    needs_retry.add(k)
+   val=item.get('value'); cit=str(item.get('citation') or '')
+   typ=normalized.get(k,{}).get('type') or infer_type(k,fields[k].get('description',''))
+   pages=item.get('page_numbers') or [int(x) for x in re.findall(r'\[Page\s+(\d+)\]',cit,re.I)]
+   locs=item.get('source_locations') or re.findall(r'\[(?:Sheet\s+)?[^\]]+![A-Z]+\d+\]',cit)
+   if val is not None and (not cit or not _citation_ok(cit,text)):
+    log.warning('Citation unsupported for field %s; scheduling targeted retry',k)
+    needs_retry.add(k); val=None; cit=''
+   result[k]=make_field(val,cit,item.get('confidence',.65),pages,locs,typ,
+                        _array_item_type(k,fields[k].get('description','')))
+  return result,needs_retry
+
  merged={}
- group_results=await asyncio.gather(*(extract_group(g) for g in groups))
- for part in group_results: merged.update(part)
+ async def first_pass(group):
+  try:
+   return await request_fields(group,False)
+  except Exception as e:
+   log.warning('Extraction group failed; scheduling targeted retries for %s: %s',', '.join(group),e)
+   llm.failed_calls += 1
+   return {k:empty_field() for k in group},set(group)
+ group_results=await asyncio.gather(*(first_pass(g) for g in groups))
+ for part,needs_retry in group_results:
+  merged.update(part); retry_keys.update(needs_retry)
+ # A null is retried field-by-field as well: first-pass nulls can result from OCR
+ # retrieval ranking rather than true absence. The retry still requires a source citation.
+ if schema.get('name') == 'lease_abstraction':
+  retry_keys.update(k for k,v in merged.items() if v.get('value') is None)
+ async def retry_one(k):
+  try:
+   result,_=await request_fields([k],True)
+   candidate=result.get(k,empty_field())
+   if candidate.get('value') is not None:
+    log.info('Recovered lease/schema field %s on targeted retry',k)
+    return k,candidate
+   return k,None
+  except Exception as e:
+   log.warning('Targeted retry failed for %s: %s',k,e)
+   return k,None
+ if retry_keys:
+  retries=await asyncio.gather(*(retry_one(k) for k in sorted(retry_keys)))
+  for k,candidate in retries:
+   if candidate is not None: merged[k]=candidate
  entries=[{k:merged.get(k,empty_field()) for k in fields}]
- # For a document without primary field there is exactly one entry.
  if primary is None:
   entries=await reasoning_review(llm,parsed,schema,normalized,entries)
   return await vision_review(llm,parsed,schema,normalized,entries)

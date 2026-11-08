@@ -6191,7 +6191,7 @@
     "tokens_in": 0,
     "tokens_out": 0,
     "cost_usd": 0.0,
-    "latency_ms": 171,
+    "latency_ms": 173,
     "models": {}
   },
   "schema": "budget_variance"

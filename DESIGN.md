@@ -9,7 +9,7 @@ I chose an evidence-first hybrid pipeline rather than sending whole documents to
 1. **Schema normalization.** Field types and scope are inferred deterministically from the supplied keys and descriptions. This avoids an unnecessary LLM call and guarantees that arbitrary client field keys are preserved.
 2. **Document parsing.** PDFs are parsed page-wise with PyMuPDF; pages without a useful text layer are rendered at 150 DPI and OCR'd locally with Tesseract PSM 6, preserving blank page slots so citation page numbers do not shift. Page boundaries and positioned text blocks are retained. DOCX paragraphs and tables are traversed in original body order; spreadsheet cells retain source locators.
 3. **Profiling and retrieval.** A lightweight profile identifies document format/type and likely sections. IDF-weighted lexical retrieval selects evidence using field keys, labels, descriptions and less-common terms.
-4. **Extraction.** Lease abstraction fields are grouped in pairs to limit long legal-text responses and truncated JSON; other schemas are grouped in batches of four. The system prompt treats document text as untrusted evidence, prohibits unsupported inference and requires a verbatim citation for every non-null value. Only the allowed OpenRouter model IDs are accepted.
+4. **Extraction.** Lease abstraction fields are grouped in pairs to limit long legal-text responses and truncated JSON; unresolved/null lease fields then receive a field-by-field recovery attempt with a larger evidence window. Other schemas are grouped in batches of four. The system prompt treats document text as untrusted evidence, prohibits unsupported inference and requires a verbatim citation for every non-null value. Only the allowed OpenRouter model IDs are accepted.
 5. **Structured tabular handling.** Rent-roll unit blocks and T12 GL rows are parsed deterministically. Selectable-text budget PDFs use coordinate bands to recover all GL detail rows and variance columns; offering memoranda use labeled sections, the unit-mix table and the subject-property comparable row. These paths do not spend model calls. Calculations use source values and Python rather than asking an LLM to do arithmetic.
 6. **Validation.** Values are normalized to the requested type, citation excerpts are checked against extracted source text, missing fields are serialized as null, and each row carries every schema key.
 
@@ -33,3 +33,7 @@ PDF pages are processed concurrently in a bounded thread pool. LLM calls use a g
 ## What I would do with another week
 
 Build a labelled evaluation harness with per-field precision/recall and citation entailment; add OCR confidence and targeted vision fallback for handwriting/low-quality regions; improve table reconstruction with coordinate-aware column detection; add robust job leases and restart recovery; calibrate confidence thresholds; and run cost/latency experiments across the allowed models.
+
+
+## Evaluation note
+The latest live Docker/OpenRouter run before the targeted lease-recovery pass scored 0.843 across all eight samples. The five non-lease documents scored 0.999–1.000; lease scores were 0.525, 0.625 and 0.593, with one lease job PARTIAL. The recovery pass is a code change awaiting a fresh live evaluation; no improved score is claimed yet.

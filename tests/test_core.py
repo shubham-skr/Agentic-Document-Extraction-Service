@@ -88,7 +88,7 @@ def test_docx_pipeline_uses_grouped_json_and_completes_without_network(tmp_path,
     result = asyncio.run(execute(str(docx_path), schema))
     assert len(result['entries']) == 1
     assert set(result['entries'][0]) == set(schema['fields'])
-    assert result['metadata']['model_calls'] == 2
+    assert result['metadata']['model_calls'] == 5
     assert result['metadata']['parse_failures'] == 0
 
 
@@ -139,3 +139,48 @@ def test_docx_parser_preserves_paragraph_table_order(tmp_path):
     parsed = parse_docx(path)
     assert parsed['text'].index('Before table') < parsed['text'].index('Inside table')
     assert parsed['text'].index('Inside table') < parsed['text'].index('After table')
+
+
+def test_lease_targeted_retry_recovers_null_field_with_verbatim_evidence(tmp_path, monkeypatch):
+    import asyncio
+    import json as json_module
+    from docx import Document
+    from app.config import settings
+    from app.graph import execute
+    import app.llm as llm_module
+    from app.llm import LLM
+
+    path = tmp_path / 'lease_retry.docx'
+    doc = Document()
+    doc.add_paragraph('COMMERCIAL LEASE')
+    doc.add_paragraph('Tenant: Acme Properties LLC')
+    doc.add_paragraph('Landlord: Example Holdings LLC')
+    doc.save(path)
+    schema = {'name': 'lease_abstraction', 'fields': {
+        'tenant_name': {'name': 'Tenant', 'description': 'Full legal name of tenant.'},
+        'landlord_name': {'name': 'Landlord', 'description': 'Full legal name of landlord.'},
+    }}
+
+    async def fake_complete(self, messages, model=None, temperature=0, max_tokens=4000, retries=1, json_mode=True):
+        request = json_module.loads(messages[-1]['content'])
+        keys = list(request['fields'])
+        self.calls += 1
+        self.by_model.setdefault(model or settings.fast_model, {'calls': 0, 'tokens_in': 0, 'tokens_out': 0, 'cost_usd': 0.0})
+        self.by_model[model or settings.fast_model]['calls'] += 1
+        retry = any('focused recovery attempt' in rule for rule in request.get('rules', []))
+        if retry and keys == ['tenant_name']:
+            return json_module.dumps({'tenant_name': {
+                'value': 'Acme Properties LLC',
+                'citation': '[Paragraph 2] Tenant: Acme Properties LLC',
+                'confidence': 0.99,
+            }})
+        return json_module.dumps({key: {'value': None, 'citation': '', 'confidence': 0} for key in keys})
+
+    monkeypatch.setattr(settings, 'llm_api_key', 'test-key-never-used-for-network')
+    monkeypatch.setattr(llm_module, 'AsyncOpenAI', None)
+    monkeypatch.setattr(LLM, 'complete', fake_complete)
+    result = asyncio.run(execute(str(path), schema))
+    entry = result['entries'][0]
+    assert entry['tenant_name']['value'] == 'Acme Properties LLC'
+    assert entry['landlord_name']['value'] is None
+    assert result['metadata']['model_calls'] == 3
