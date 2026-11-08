@@ -1,0 +1,21 @@
+services:
+  outcome-extractor:
+    build: .
+    ports: ["8080:8080"]
+    env_file:
+      - .env
+    environment:
+      DATABASE_PATH: /data/jobs.sqlite3
+      UPLOAD_DIR: /data/uploads
+      OUTPUT_DIR: /data/outputs
+    volumes:
+      - outcome_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+volumes:
+  outcome_data:

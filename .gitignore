@@ -1,0 +1,16 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+/data/
+*.sqlite3
+*.db
+.DS_Store
+
+# Assignment-provided private evaluation data: use locally, never package
+sample/sample-data-documents/
+sample/sample-data-output-validated/
