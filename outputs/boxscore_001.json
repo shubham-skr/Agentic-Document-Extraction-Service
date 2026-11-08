@@ -1,0 +1,1604 @@
+{
+  "entries": [
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 7] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C7"
+        ]
+      },
+      "code": {
+        "value": "PR - P1",
+        "citation": "[CSV row 7] Code: PR - P1",
+        "confidence": 0.95,
+        "source_locations": [
+          "A7"
+        ]
+      },
+      "name": {
+        "value": "P1 -1x1 Pearl",
+        "citation": "[CSV row 7] Name: P1 -1x1 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B7"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 940.0,
+        "citation": "[CSV row 7] Avg. Sq Ft.: 940",
+        "confidence": 0.95,
+        "source_locations": [
+          "D7"
+        ]
+      },
+      "avg_rent": {
+        "value": 5135.0,
+        "citation": "[CSV row 7] Avg. Rent: 5135",
+        "confidence": 0.95,
+        "source_locations": [
+          "E7"
+        ]
+      },
+      "units": {
+        "value": 9.0,
+        "citation": "[CSV row 7] Units: 9",
+        "confidence": 0.95,
+        "source_locations": [
+          "F7"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 1.0,
+        "citation": "[CSV row 7] Occupied No Notice: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "G7"
+        ]
+      },
+      "vacant_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Vacant Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "H7"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Vacant Unrented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "I7"
+        ]
+      },
+      "notice_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Notice Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "J7"
+        ]
+      },
+      "notice_unrented": {
+        "value": 2.0,
+        "citation": "[CSV row 7] Notice Unrented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "K7"
+        ]
+      },
+      "avail": {
+        "value": 1.0,
+        "citation": "[CSV row 7] Avail: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "L7"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M7"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N7"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 7] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O7"
+        ]
+      },
+      "percent_occupied": {
+        "value": 75.0,
+        "citation": "[CSV row 7] % Occ: 75",
+        "confidence": 0.95,
+        "source_locations": [
+          "P7"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 75.0,
+        "citation": "[CSV row 7] % Occ w/NonRev: 75",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q7"
+        ]
+      },
+      "percent_leased": {
+        "value": 75.0,
+        "citation": "[CSV row 7] % Leased: 75",
+        "confidence": 0.95,
+        "source_locations": [
+          "R7"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 7] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S7"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 8] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C8"
+        ]
+      },
+      "code": {
+        "value": "PR - P2",
+        "citation": "[CSV row 8] Code: PR - P2",
+        "confidence": 0.95,
+        "source_locations": [
+          "A8"
+        ]
+      },
+      "name": {
+        "value": "P2 -1x1 Pearl",
+        "citation": "[CSV row 8] Name: P2 -1x1 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B8"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 131.0,
+        "citation": "[CSV row 8] Avg. Sq Ft.: 131",
+        "confidence": 0.95,
+        "source_locations": [
+          "D8"
+        ]
+      },
+      "avg_rent": {
+        "value": 3231.0,
+        "citation": "[CSV row 8] Avg. Rent: 3231",
+        "confidence": 0.95,
+        "source_locations": [
+          "E8"
+        ]
+      },
+      "units": {
+        "value": 17.0,
+        "citation": "[CSV row 8] Units: 17",
+        "confidence": 0.95,
+        "source_locations": [
+          "F8"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 4.0,
+        "citation": "[CSV row 8] Occupied No Notice: 4",
+        "confidence": 0.95,
+        "source_locations": [
+          "G8"
+        ]
+      },
+      "vacant_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Vacant Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "H8"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 2.0,
+        "citation": "[CSV row 8] Vacant Unrented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "I8"
+        ]
+      },
+      "notice_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Notice Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "J8"
+        ]
+      },
+      "notice_unrented": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Notice Unrented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "K8"
+        ]
+      },
+      "avail": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Avail: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "L8"
+        ]
+      },
+      "model": {
+        "value": 1.0,
+        "citation": "[CSV row 8] Model: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "M8"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N8"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 8] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O8"
+        ]
+      },
+      "percent_occupied": {
+        "value": 89.47,
+        "citation": "[CSV row 8] % Occ: 89.47",
+        "confidence": 0.95,
+        "source_locations": [
+          "P8"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 90.0,
+        "citation": "[CSV row 8] % Occ w/NonRev: 90",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q8"
+        ]
+      },
+      "percent_leased": {
+        "value": 89.47,
+        "citation": "[CSV row 8] % Leased: 89.47",
+        "confidence": 0.95,
+        "source_locations": [
+          "R8"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 8] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S8"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 9] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C9"
+        ]
+      },
+      "code": {
+        "value": "PR - P3",
+        "citation": "[CSV row 9] Code: PR - P3",
+        "confidence": 0.95,
+        "source_locations": [
+          "A9"
+        ]
+      },
+      "name": {
+        "value": "P3 -1x1 Pearl",
+        "citation": "[CSV row 9] Name: P3 -1x1 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B9"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 40.0,
+        "citation": "[CSV row 9] Avg. Sq Ft.: 40",
+        "confidence": 0.95,
+        "source_locations": [
+          "D9"
+        ]
+      },
+      "avg_rent": {
+        "value": 3945.0,
+        "citation": "[CSV row 9] Avg. Rent: 3945",
+        "confidence": 0.95,
+        "source_locations": [
+          "E9"
+        ]
+      },
+      "units": {
+        "value": 12.0,
+        "citation": "[CSV row 9] Units: 12",
+        "confidence": 0.95,
+        "source_locations": [
+          "F9"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 11.0,
+        "citation": "[CSV row 9] Occupied No Notice: 11",
+        "confidence": 0.95,
+        "source_locations": [
+          "G9"
+        ]
+      },
+      "vacant_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 9] Vacant Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "H9"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 0.0,
+        "citation": "[CSV row 9] Vacant Unrented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "I9"
+        ]
+      },
+      "notice_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 9] Notice Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "J9"
+        ]
+      },
+      "notice_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 9] Notice Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "K9"
+        ]
+      },
+      "avail": {
+        "value": 0.0,
+        "citation": "[CSV row 9] Avail: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "L9"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 9] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M9"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 9] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N9"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 9] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O9"
+        ]
+      },
+      "percent_occupied": {
+        "value": 86.67,
+        "citation": "[CSV row 9] % Occ: 86.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "P9"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 86.67,
+        "citation": "[CSV row 9] % Occ w/NonRev: 86.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q9"
+        ]
+      },
+      "percent_leased": {
+        "value": 93.33,
+        "citation": "[CSV row 9] % Leased: 93.33",
+        "confidence": 0.95,
+        "source_locations": [
+          "R9"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 9] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S9"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 10] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C10"
+        ]
+      },
+      "code": {
+        "value": "PR - P4",
+        "citation": "[CSV row 10] Code: PR - P4",
+        "confidence": 0.95,
+        "source_locations": [
+          "A10"
+        ]
+      },
+      "name": {
+        "value": "P4 -1x1 Pearl",
+        "citation": "[CSV row 10] Name: P4 -1x1 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B10"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 585.0,
+        "citation": "[CSV row 10] Avg. Sq Ft.: 585",
+        "confidence": 0.95,
+        "source_locations": [
+          "D10"
+        ]
+      },
+      "avg_rent": {
+        "value": 6358.0,
+        "citation": "[CSV row 10] Avg. Rent: 6358",
+        "confidence": 0.95,
+        "source_locations": [
+          "E10"
+        ]
+      },
+      "units": {
+        "value": 17.0,
+        "citation": "[CSV row 10] Units: 17",
+        "confidence": 0.95,
+        "source_locations": [
+          "F10"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 1.0,
+        "citation": "[CSV row 10] Occupied No Notice: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "G10"
+        ]
+      },
+      "vacant_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 10] Vacant Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "H10"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 10] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I10"
+        ]
+      },
+      "notice_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 10] Notice Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "J10"
+        ]
+      },
+      "notice_unrented": {
+        "value": 0.0,
+        "citation": "[CSV row 10] Notice Unrented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "K10"
+        ]
+      },
+      "avail": {
+        "value": 3.0,
+        "citation": "[CSV row 10] Avail: 3",
+        "confidence": 0.95,
+        "source_locations": [
+          "L10"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 10] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M10"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 10] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N10"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 10] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O10"
+        ]
+      },
+      "percent_occupied": {
+        "value": 78.26,
+        "citation": "[CSV row 10] % Occ: 78.26",
+        "confidence": 0.95,
+        "source_locations": [
+          "P10"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 78.26,
+        "citation": "[CSV row 10] % Occ w/NonRev: 78.26",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q10"
+        ]
+      },
+      "percent_leased": {
+        "value": 82.61,
+        "citation": "[CSV row 10] % Leased: 82.61",
+        "confidence": 0.95,
+        "source_locations": [
+          "R10"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 10] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S10"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 11] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C11"
+        ]
+      },
+      "code": {
+        "value": "PR - B1",
+        "citation": "[CSV row 11] Code: PR - B1",
+        "confidence": 0.95,
+        "source_locations": [
+          "A11"
+        ]
+      },
+      "name": {
+        "value": "B1 -2x1 Pearl",
+        "citation": "[CSV row 11] Name: B1 -2x1 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B11"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 832.0,
+        "citation": "[CSV row 11] Avg. Sq Ft.: 832",
+        "confidence": 0.95,
+        "source_locations": [
+          "D11"
+        ]
+      },
+      "avg_rent": {
+        "value": 5343.0,
+        "citation": "[CSV row 11] Avg. Rent: 5343",
+        "confidence": 0.95,
+        "source_locations": [
+          "E11"
+        ]
+      },
+      "units": {
+        "value": 22.0,
+        "citation": "[CSV row 11] Units: 22",
+        "confidence": 0.95,
+        "source_locations": [
+          "F11"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 8.0,
+        "citation": "[CSV row 11] Occupied No Notice: 8",
+        "confidence": 0.95,
+        "source_locations": [
+          "G11"
+        ]
+      },
+      "vacant_rented": {
+        "value": 2.0,
+        "citation": "[CSV row 11] Vacant Rented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "H11"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 11] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I11"
+        ]
+      },
+      "notice_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Notice Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "J11"
+        ]
+      },
+      "notice_unrented": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Notice Unrented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "K11"
+        ]
+      },
+      "avail": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Avail: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "L11"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M11"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N11"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 11] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O11"
+        ]
+      },
+      "percent_occupied": {
+        "value": 96.0,
+        "citation": "[CSV row 11] % Occ: 96",
+        "confidence": 0.95,
+        "source_locations": [
+          "P11"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 96.0,
+        "citation": "[CSV row 11] % Occ w/NonRev: 96",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q11"
+        ]
+      },
+      "percent_leased": {
+        "value": 96.0,
+        "citation": "[CSV row 11] % Leased: 96",
+        "confidence": 0.95,
+        "source_locations": [
+          "R11"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 11] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S11"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 12] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C12"
+        ]
+      },
+      "code": {
+        "value": "PR - B2",
+        "citation": "[CSV row 12] Code: PR - B2",
+        "confidence": 0.95,
+        "source_locations": [
+          "A12"
+        ]
+      },
+      "name": {
+        "value": "B2 -2x2 Pearl",
+        "citation": "[CSV row 12] Name: B2 -2x2 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B12"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 548.0,
+        "citation": "[CSV row 12] Avg. Sq Ft.: 548",
+        "confidence": 0.95,
+        "source_locations": [
+          "D12"
+        ]
+      },
+      "avg_rent": {
+        "value": 8030.0,
+        "citation": "[CSV row 12] Avg. Rent: 8030",
+        "confidence": 0.95,
+        "source_locations": [
+          "E12"
+        ]
+      },
+      "units": {
+        "value": 27.0,
+        "citation": "[CSV row 12] Units: 27",
+        "confidence": 0.95,
+        "source_locations": [
+          "F12"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 12.0,
+        "citation": "[CSV row 12] Occupied No Notice: 12",
+        "confidence": 0.95,
+        "source_locations": [
+          "G12"
+        ]
+      },
+      "vacant_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 12] Vacant Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "H12"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 12] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I12"
+        ]
+      },
+      "notice_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 12] Notice Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "J12"
+        ]
+      },
+      "notice_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 12] Notice Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "K12"
+        ]
+      },
+      "avail": {
+        "value": 13.0,
+        "citation": "[CSV row 12] Avail: 13",
+        "confidence": 0.95,
+        "source_locations": [
+          "L12"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 12] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M12"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 12] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N12"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 12] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O12"
+        ]
+      },
+      "percent_occupied": {
+        "value": 63.64,
+        "citation": "[CSV row 12] % Occ: 63.64",
+        "confidence": 0.95,
+        "source_locations": [
+          "P12"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 63.64,
+        "citation": "[CSV row 12] % Occ w/NonRev: 63.64",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q12"
+        ]
+      },
+      "percent_leased": {
+        "value": 65.91,
+        "citation": "[CSV row 12] % Leased: 65.91",
+        "confidence": 0.95,
+        "source_locations": [
+          "R12"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 12] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S12"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 13] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C13"
+        ]
+      },
+      "code": {
+        "value": "PR - B3",
+        "citation": "[CSV row 13] Code: PR - B3",
+        "confidence": 0.95,
+        "source_locations": [
+          "A13"
+        ]
+      },
+      "name": {
+        "value": "B3 -2x2 Pearl",
+        "citation": "[CSV row 13] Name: B3 -2x2 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B13"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 790.0,
+        "citation": "[CSV row 13] Avg. Sq Ft.: 790",
+        "confidence": 0.95,
+        "source_locations": [
+          "D13"
+        ]
+      },
+      "avg_rent": {
+        "value": 4762.0,
+        "citation": "[CSV row 13] Avg. Rent: 4762",
+        "confidence": 0.95,
+        "source_locations": [
+          "E13"
+        ]
+      },
+      "units": {
+        "value": 62.0,
+        "citation": "[CSV row 13] Units: 62",
+        "confidence": 0.95,
+        "source_locations": [
+          "F13"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 4.0,
+        "citation": "[CSV row 13] Occupied No Notice: 4",
+        "confidence": 0.95,
+        "source_locations": [
+          "G13"
+        ]
+      },
+      "vacant_rented": {
+        "value": 3.0,
+        "citation": "[CSV row 13] Vacant Rented: 3",
+        "confidence": 0.95,
+        "source_locations": [
+          "H13"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 13] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I13"
+        ]
+      },
+      "notice_rented": {
+        "value": 2.0,
+        "citation": "[CSV row 13] Notice Rented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "J13"
+        ]
+      },
+      "notice_unrented": {
+        "value": 2.0,
+        "citation": "[CSV row 13] Notice Unrented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "K13"
+        ]
+      },
+      "avail": {
+        "value": 4.0,
+        "citation": "[CSV row 13] Avail: 4",
+        "confidence": 0.95,
+        "source_locations": [
+          "L13"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 13] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M13"
+        ]
+      },
+      "down": {
+        "value": 1.0,
+        "citation": "[CSV row 13] Down: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "N13"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 13] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O13"
+        ]
+      },
+      "percent_occupied": {
+        "value": 87.84,
+        "citation": "[CSV row 13] % Occ: 87.84",
+        "confidence": 0.95,
+        "source_locations": [
+          "P13"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 88.0,
+        "citation": "[CSV row 13] % Occ w/NonRev: 88",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q13"
+        ]
+      },
+      "percent_leased": {
+        "value": 90.54,
+        "citation": "[CSV row 13] % Leased: 90.54",
+        "confidence": 0.95,
+        "source_locations": [
+          "R13"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 13] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S13"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 14] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C14"
+        ]
+      },
+      "code": {
+        "value": "PR - C1",
+        "citation": "[CSV row 14] Code: PR - C1",
+        "confidence": 0.95,
+        "source_locations": [
+          "A14"
+        ]
+      },
+      "name": {
+        "value": "C1 -2x2 Pearl",
+        "citation": "[CSV row 14] Name: C1 -2x2 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B14"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 716.0,
+        "citation": "[CSV row 14] Avg. Sq Ft.: 716",
+        "confidence": 0.95,
+        "source_locations": [
+          "D14"
+        ]
+      },
+      "avg_rent": {
+        "value": 610.0,
+        "citation": "[CSV row 14] Avg. Rent: 610",
+        "confidence": 0.95,
+        "source_locations": [
+          "E14"
+        ]
+      },
+      "units": {
+        "value": 20.0,
+        "citation": "[CSV row 14] Units: 20",
+        "confidence": 0.95,
+        "source_locations": [
+          "F14"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 3.0,
+        "citation": "[CSV row 14] Occupied No Notice: 3",
+        "confidence": 0.95,
+        "source_locations": [
+          "G14"
+        ]
+      },
+      "vacant_rented": {
+        "value": 2.0,
+        "citation": "[CSV row 14] Vacant Rented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "H14"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 3.0,
+        "citation": "[CSV row 14] Vacant Unrented: 3",
+        "confidence": 0.95,
+        "source_locations": [
+          "I14"
+        ]
+      },
+      "notice_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 14] Notice Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "J14"
+        ]
+      },
+      "notice_unrented": {
+        "value": 2.0,
+        "citation": "[CSV row 14] Notice Unrented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "K14"
+        ]
+      },
+      "avail": {
+        "value": 3.0,
+        "citation": "[CSV row 14] Avail: 3",
+        "confidence": 0.95,
+        "source_locations": [
+          "L14"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 14] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M14"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 14] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N14"
+        ]
+      },
+      "admin": {
+        "value": 1.0,
+        "citation": "[CSV row 14] Admin: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "O14"
+        ]
+      },
+      "percent_occupied": {
+        "value": 70.97,
+        "citation": "[CSV row 14] % Occ: 70.97",
+        "confidence": 0.95,
+        "source_locations": [
+          "P14"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 71.88,
+        "citation": "[CSV row 14] % Occ w/NonRev: 71.88",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q14"
+        ]
+      },
+      "percent_leased": {
+        "value": 74.19,
+        "citation": "[CSV row 14] % Leased: 74.19",
+        "confidence": 0.95,
+        "source_locations": [
+          "R14"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 14] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S14"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 15] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C15"
+        ]
+      },
+      "code": {
+        "value": "PR - C2",
+        "citation": "[CSV row 15] Code: PR - C2",
+        "confidence": 0.95,
+        "source_locations": [
+          "A15"
+        ]
+      },
+      "name": {
+        "value": "C2 -3x2 Pearl",
+        "citation": "[CSV row 15] Name: C2 -3x2 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B15"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 599.0,
+        "citation": "[CSV row 15] Avg. Sq Ft.: 599",
+        "confidence": 0.95,
+        "source_locations": [
+          "D15"
+        ]
+      },
+      "avg_rent": {
+        "value": 1513.0,
+        "citation": "[CSV row 15] Avg. Rent: 1513",
+        "confidence": 0.95,
+        "source_locations": [
+          "E15"
+        ]
+      },
+      "units": {
+        "value": 7.0,
+        "citation": "[CSV row 15] Units: 7",
+        "confidence": 0.95,
+        "source_locations": [
+          "F15"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 2.0,
+        "citation": "[CSV row 15] Occupied No Notice: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "G15"
+        ]
+      },
+      "vacant_rented": {
+        "value": 1.0,
+        "citation": "[CSV row 15] Vacant Rented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "H15"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 15] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I15"
+        ]
+      },
+      "notice_rented": {
+        "value": 2.0,
+        "citation": "[CSV row 15] Notice Rented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "J15"
+        ]
+      },
+      "notice_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 15] Notice Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "K15"
+        ]
+      },
+      "avail": {
+        "value": 0.0,
+        "citation": "[CSV row 15] Avail: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "L15"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 15] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M15"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 15] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N15"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 15] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O15"
+        ]
+      },
+      "percent_occupied": {
+        "value": 66.67,
+        "citation": "[CSV row 15] % Occ: 66.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "P15"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 66.67,
+        "citation": "[CSV row 15] % Occ w/NonRev: 66.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q15"
+        ]
+      },
+      "percent_leased": {
+        "value": 83.33,
+        "citation": "[CSV row 15] % Leased: 83.33",
+        "confidence": 0.95,
+        "source_locations": [
+          "R15"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 15] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S15"
+        ]
+      }
+    },
+    {
+      "property_name": {
+        "value": "Pearl at Victory Ridge",
+        "citation": "[CSV row 2] Pearl at Victory Ridge",
+        "confidence": 0.99
+      },
+      "date": {
+        "value": "2025-02-09",
+        "citation": "[CSV row 16] Report Date: 2/9/2025",
+        "confidence": 0.95,
+        "source_locations": [
+          "C16"
+        ]
+      },
+      "code": {
+        "value": "PR - D1",
+        "citation": "[CSV row 16] Code: PR - D1",
+        "confidence": 0.95,
+        "source_locations": [
+          "A16"
+        ]
+      },
+      "name": {
+        "value": "D1 -3x2 Pearl",
+        "citation": "[CSV row 16] Name: D1 -3x2 Pearl",
+        "confidence": 0.95,
+        "source_locations": [
+          "B16"
+        ]
+      },
+      "avg_sq_ft": {
+        "value": 895.0,
+        "citation": "[CSV row 16] Avg. Sq Ft.: 895",
+        "confidence": 0.95,
+        "source_locations": [
+          "D16"
+        ]
+      },
+      "avg_rent": {
+        "value": 9302.0,
+        "citation": "[CSV row 16] Avg. Rent: 9302",
+        "confidence": 0.95,
+        "source_locations": [
+          "E16"
+        ]
+      },
+      "units": {
+        "value": 8.0,
+        "citation": "[CSV row 16] Units: 8",
+        "confidence": 0.95,
+        "source_locations": [
+          "F16"
+        ]
+      },
+      "occ_no_notice": {
+        "value": 4.0,
+        "citation": "[CSV row 16] Occupied No Notice: 4",
+        "confidence": 0.95,
+        "source_locations": [
+          "G16"
+        ]
+      },
+      "vacant_rented": {
+        "value": 2.0,
+        "citation": "[CSV row 16] Vacant Rented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "H16"
+        ]
+      },
+      "vacant_unrented": {
+        "value": 1.0,
+        "citation": "[CSV row 16] Vacant Unrented: 1",
+        "confidence": 0.95,
+        "source_locations": [
+          "I16"
+        ]
+      },
+      "notice_rented": {
+        "value": 0.0,
+        "citation": "[CSV row 16] Notice Rented: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "J16"
+        ]
+      },
+      "notice_unrented": {
+        "value": 2.0,
+        "citation": "[CSV row 16] Notice Unrented: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "K16"
+        ]
+      },
+      "avail": {
+        "value": 2.0,
+        "citation": "[CSV row 16] Avail: 2",
+        "confidence": 0.95,
+        "source_locations": [
+          "L16"
+        ]
+      },
+      "model": {
+        "value": 0.0,
+        "citation": "[CSV row 16] Model: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "M16"
+        ]
+      },
+      "down": {
+        "value": 0.0,
+        "citation": "[CSV row 16] Down: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "N16"
+        ]
+      },
+      "admin": {
+        "value": 0.0,
+        "citation": "[CSV row 16] Admin: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "O16"
+        ]
+      },
+      "percent_occupied": {
+        "value": 66.67,
+        "citation": "[CSV row 16] % Occ: 66.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "P16"
+        ]
+      },
+      "p_occ_wornonrev": {
+        "value": 66.67,
+        "citation": "[CSV row 16] % Occ w/NonRev: 66.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "Q16"
+        ]
+      },
+      "percent_leased": {
+        "value": 66.67,
+        "citation": "[CSV row 16] % Leased: 66.67",
+        "confidence": 0.95,
+        "source_locations": [
+          "R16"
+        ]
+      },
+      "p_trend": {
+        "value": 0.0,
+        "citation": "[CSV row 16] % Trend: 0",
+        "confidence": 0.95,
+        "source_locations": [
+          "S16"
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "model_calls": 0,
+    "failed_calls": 0,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_usd": 0.0,
+    "latency_ms": 12,
+    "models": {}
+  },
+  "schema": "boxscore"
+}
