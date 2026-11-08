@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
-    llm_base_url = os.getenv('LLM_BASE_URL', 'https://openrouter.ai/api/v1').rstrip('/')
+    llm_base_url = os.getenv('LLM_BASE_URL', '').rstrip('/')
     llm_api_key = os.getenv('LLM_API_KEY', '')
     fast_model = os.getenv('FAST_MODEL', 'google/gemini-3.8-flash')
     strong_model = os.getenv('STRONG_MODEL', 'google/gemini-3.1-pro-preview')
@@ -18,7 +18,7 @@ class Settings:
     database_path = os.getenv('DATABASE_PATH', './data/jobs.sqlite3')
     upload_dir = os.getenv('UPLOAD_DIR', './data/uploads')
     output_dir = os.getenv('OUTPUT_DIR', './outputs')
-    ocr_dpi = int(os.getenv('OCR_DPI', '110'))
+    ocr_dpi = max(150, int(os.getenv('OCR_DPI', '150')))
     ocr_lang = os.getenv('OCR_LANG', 'eng')
     log_level = os.getenv('LOG_LEVEL', 'INFO')
 

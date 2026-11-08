@@ -1,0 +1,283 @@
+{
+  "entries": [
+    {
+      "tenant_name": {
+        "value": "M.J. Delacroix & Associates, P.C.",
+        "citation": "[Page 2] M.J. Delacroix & Associates, P.C.\nTENANT: an Illinois corporation",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "landlord_legal_name": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "property_name": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "building_address": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "premises": {
+        "value": "Second Floor, West Section, Suite 214W",
+        "citation": "[Page 2] PREMISES: Second Floor, West Section, Suite 214W",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rentable_square_footage": {
+        "value": 1892,
+        "citation": "[Page 2] PREMISES RENTABLE AREA: approximately 1,892 square feet",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "pro_rata_share": {
+        "value": 0.91,
+        "citation": "[Page 2] TENANT'S PROPORTIONATE SHARE: 0.91 %",
+        "confidence": 1.0,
+        "page_numbers": [
+          2
+        ]
+      },
+      "permitted_use": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "lease_execution_date": {
+        "value": "1993-03-05",
+        "citation": "[Page 2] LEASE REFERENCE DATE: March 5 , 19° 93",
+        "confidence": 0.9,
+        "page_numbers": [
+          2
+        ]
+      },
+      "lease_commencement_date": {
+        "value": "1993-05-01",
+        "citation": "[Page 2] COMMENCEMENT DATE: May 1 , 19° 93",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_commencement_date": {
+        "value": "1993-05-01",
+        "citation": "[Page 2] COMMENCEMENT DATE: May 1 , 19° 93",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "lease_expiration_date": {
+        "value": "1998-04-30",
+        "citation": "[Page 2] TERMINATION DATE: April 30 , 19° 98",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "lease_term_months": {
+        "value": 60,
+        "citation": "[Page 2] TERM OF LEASE: Five years and_ no months\nbeginning on the Commencement Date and\nending on the Termination Date",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_schedule_start_dates": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "rent_schedule_end_dates": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "rent_schedule_monthly_rent": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "rent_schedule_annual_rent_per_rsf": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "total_base_rent": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "base_rent_escalation": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "free_rent_months": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "security_deposit_amount": {
+        "value": 2150.0,
+        "citation": "[Page 2] SECURITY DEPOSIT: $ 2,400 (struck through) 2150.M Delacroix (handwritten amendment, initialed)",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "letter_of_credit_required": {
+        "value": false,
+        "citation": "[Page 4] Tenant has deposited with Landlord the Security Deposit. Said sum shall be held by Landlord as security for the faithful performance by Tenant of all the terms, covenants and conditions of this Lease",
+        "confidence": 0.95,
+        "page_numbers": [
+          4
+        ]
+      },
+      "expense_structure": {
+        "value": "base year 1993",
+        "citation": "[Page 2] BASE YEAR (DIRECT EXPENSES): 19 93",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "base_year_expenses": {
+        "value": 1993,
+        "citation": "[Page 2] BASE YEAR (DIRECT EXPENSES): 19 93",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "base_year_taxes": {
+        "value": 1993,
+        "citation": "[Page 2] BASE YEAR (TAXES): 19 93",
+        "confidence": 1.0,
+        "page_numbers": [
+          2
+        ]
+      },
+      "electricity_provision": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "parking_spaces": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "parking_monthly_charge": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "ti_allowance_total": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_option_exists": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_options_count": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_term_months": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_notice_months": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "early_termination_right": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "termination_fee_description": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "right_to_sublet": {
+        "value": "With prior written consent of Landlord",
+        "citation": "[Page 6] Tenant shall not have the right to assign or pledge this Lease or to sublet the whole or any part of the Premises, whether voluntarily or by operation of law, or permit the use or occupancy of the Premises by anyone other than Tenant, or assign this Lease for security purposes, without the prior written consent of Landlord",
+        "confidence": 0.95,
+        "page_numbers": [
+          6
+        ]
+      },
+      "guarantor_name": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "broker_names": {
+        "value": [
+          "Meridian Commercial Realty Group, Inc."
+        ],
+        "citation": "[Page 2] REAL ESTATE BROKER DUE COMMISSION: Meridian Commercial Realty Group, Inc.",
+        "confidence": 1.0,
+        "page_numbers": [
+          2
+        ]
+      },
+      "late_fee": {
+        "value": "the greater of: (a) $75.00, or (b) a sum equal to 6% of the unpaid rent or other payment",
+        "citation": "[Page 3] Tenant therefore agrees that if rent or any other sum is due and payable pursuant to this Lease, and when such amount remains due and unpaid ten days after said amount is due, such amount shall be increased by a late charge in an amount equal to the greater of: (a) $75.00, or (b) a sum equal to 6% of the unpaid rent or other payment.",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "holdover_rent": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      }
+    }
+  ],
+  "metadata": {
+    "model_calls": 21,
+    "failed_calls": 1,
+    "parse_failures": 1,
+    "tokens_in": 73333,
+    "tokens_out": 31161,
+    "cost_usd": 0.169164,
+    "latency_ms": 237526,
+    "models": {
+      "google/gemini-3.8-flash": {
+        "calls": 20,
+        "tokens_in": 70687,
+        "tokens_out": 30973,
+        "cost_usd": 0.169164
+      },
+      "z-ai/glm-5.3-flash": {
+        "calls": 1,
+        "tokens_in": 2646,
+        "tokens_out": 188,
+        "cost_usd": 0.0
+      }
+    }
+  },
+  "schema": "lease_abstraction"
+}

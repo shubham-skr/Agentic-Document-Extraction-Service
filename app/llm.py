@@ -27,6 +27,8 @@ _sem = asyncio.Semaphore(max(1, settings.max_llm_concurrency))
 
 class LLM:
     def __init__(self):
+        if settings.llm_api_key and not settings.llm_base_url and AsyncOpenAI:
+            raise RuntimeError('LLM_BASE_URL must be set in the environment; no provider endpoint is hardcoded')
         self.client = (
             AsyncOpenAI(
                 base_url=settings.llm_base_url,
@@ -34,7 +36,7 @@ class LLM:
                 timeout=settings.llm_timeout_seconds,
                 max_retries=0,
             )
-            if settings.llm_api_key and AsyncOpenAI else None
+            if settings.llm_api_key and settings.llm_base_url and AsyncOpenAI else None
         )
         self.calls = 0
         self.failed_calls = 0

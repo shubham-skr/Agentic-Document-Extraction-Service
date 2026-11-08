@@ -34,7 +34,7 @@ unzip -oq "$ZIP_PATH" 'sample/sample-data-documents/*' 'sample/sample-data-outpu
 docker compose up --build -d
 healthy=0
 for _ in $(seq 1 90); do
-  if curl -fsS http://127.0.0.1:8080/health >/dev/null; then healthy=1; break; fi
+  if curl -fsS http://127.0.0.1:8080/health >/dev/null 2>&1; then healthy=1; break; fi
   sleep 1
 done
 if [[ "$healthy" -ne 1 ]]; then

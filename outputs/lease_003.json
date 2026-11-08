@@ -1,0 +1,306 @@
+{
+  "entries": [
+    {
+      "tenant_name": {
+        "value": "KRESTMOOR INCORPORATED",
+        "citation": "[Page 1] KRESTMOOR INCORPORATED, an Illinois corporation, (\"Tenant\").",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "landlord_legal_name": {
+        "value": "250 S. HARBOR LLC",
+        "citation": "[Page 1] 250 S. HARBOR LLC, an Illinois limited liability company, (\"Landlord\")",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "property_name": {
+        "value": "250 South Harbor",
+        "citation": "[Page 1] 250 South Harbor",
+        "confidence": 0.9,
+        "page_numbers": [
+          1
+        ]
+      },
+      "building_address": {
+        "value": "250 South Harbor Street, Chicago, Illinois 60606",
+        "citation": "[Page 3] 250 South Harbor Street,\nChicago, Illinois 60606",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "premises": {
+        "value": "Suite 500",
+        "citation": "[Page 1] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "rentable_square_footage": {
+        "value": 6840,
+        "citation": "[Page 1] comprised of a total of approximately 6,840 rentable square feet",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "pro_rata_share": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "permitted_use": {
+        "value": "operation of law office or other general office purpose",
+        "citation": "[Page 5] 3. OCCUPANCY. Tenant shall use and occupy the Premises for the operation of law office or other general office purpose.",
+        "confidence": 0.9,
+        "page_numbers": [
+          5
+        ]
+      },
+      "lease_execution_date": {
+        "value": "2010-03-04",
+        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "lease_commencement_date": {
+        "value": "2010-08-01",
+        "citation": "[Page 1] commencing on the 1* day of August, 2010",
+        "confidence": 0.95,
+        "page_numbers": [
+          1
+        ]
+      },
+      "rent_commencement_date": {
+        "value": "2010-08-01",
+        "citation": "[Page 3] commencing on the 1* day of August, 2010",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "lease_expiration_date": {
+        "value": "2021-02-28",
+        "citation": "[Page 3] terminating on the 28\" day of February, 2021",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "lease_term_months": {
+        "value": 127,
+        "citation": "[Page 2] for the term of Ten (10) years Seven (7) months commencing on the 1* day of August, 2010, and terminating on the 28\" day of February, 2021",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_schedule_start_dates": {
+        "value": [
+          "2010-08-01",
+          "2011-08-01",
+          "2020-08-01"
+        ],
+        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_schedule_end_dates": {
+        "value": [
+          "2011-07-31",
+          "2012-07-31",
+          "2021-02-28"
+        ],
+        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_schedule_monthly_rent": {
+        "value": [
+          11934,
+          12196,
+          14554
+        ],
+        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "rent_schedule_annual_rent_per_rsf": {
+        "value": [
+          20.94,
+          21.4,
+          25.53
+        ],
+        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.9,
+        "page_numbers": [
+          2
+        ]
+      },
+      "total_base_rent": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "base_rent_escalation": {
+        "value": "fixed steps per schedule",
+        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
+      },
+      "free_rent_months": {
+        "value": 0,
+        "citation": "[Page 2] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever.",
+        "confidence": 0.9,
+        "page_numbers": [
+          2
+        ]
+      },
+      "security_deposit_amount": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "letter_of_credit_required": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "expense_structure": {
+        "value": "base year 2011",
+        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "base_year_expenses": {
+        "value": 2011,
+        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
+      },
+      "base_year_taxes": {
+        "value": 2011,
+        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Taxes an amount equal to Tenant's Proportionate Share (as defined below) of the Taxes which are in excess of the Taxes paid in the Base Year of 2011.",
+        "confidence": 1.0,
+        "page_numbers": [
+          3
+        ]
+      },
+      "electricity_provision": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "parking_spaces": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "parking_monthly_charge": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "ti_allowance_total": {
+        "value": 14000,
+        "citation": "Landlord shall provide Tenant a Refurbishment Allowance, as defined herein, of up to\nFourteen Thousand and 00/100 Dollars ($14,000.00, \"Refurbishment Allowance\")",
+        "confidence": 0.85
+      },
+      "renewal_option_exists": {
+        "value": true,
+        "citation": "31. OPTION TO RENEW.",
+        "confidence": 0.65
+      },
+      "renewal_options_count": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_term_months": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "renewal_notice_months": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "early_termination_right": {
+        "value": true,
+        "citation": "[Page 2] 32. OPTION TO TERMINATE.",
+        "confidence": 0.85,
+        "page_numbers": [
+          2
+        ]
+      },
+      "termination_fee_description": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "right_to_sublet": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "guarantor_name": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "broker_names": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "late_fee": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "holdover_rent": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      }
+    }
+  ],
+  "metadata": {
+    "model_calls": 20,
+    "failed_calls": 0,
+    "parse_failures": 0,
+    "tokens_in": 68681,
+    "tokens_out": 34881,
+    "cost_usd": 0.18231450000000002,
+    "latency_ms": 243486,
+    "models": {
+      "google/gemini-3.8-flash": {
+        "calls": 20,
+        "tokens_in": 68681,
+        "tokens_out": 34881,
+        "cost_usd": 0.18231450000000002
+      }
+    }
+  },
+  "schema": "lease_abstraction"
+}

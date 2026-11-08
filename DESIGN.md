@@ -7,10 +7,10 @@ I chose an evidence-first hybrid pipeline rather than sending whole documents to
 ## Pipeline
 
 1. **Schema normalization.** Field types and scope are inferred deterministically from the supplied keys and descriptions. This avoids an unnecessary LLM call and guarantees that arbitrary client field keys are preserved.
-2. **Document parsing.** PDFs are parsed page-wise with PyMuPDF; pages without a useful text layer are rendered and OCR'd locally with Tesseract. Page boundaries and positioned text blocks are retained. DOCX paragraphs/tables and spreadsheet cells retain source locators.
-3. **Profiling and retrieval.** A lightweight profile identifies document format/type and likely sections. Lexical retrieval selects relevant source lines for field groups, reducing irrelevant prompt tokens.
-4. **Extraction.** Related fields are grouped in batches of four to keep output size manageable. The system prompt treats document text as untrusted evidence, prohibits unsupported inference and requires a verbatim citation for every non-null value. Only the allowed OpenRouter model IDs are accepted.
-5. **Structured tabular handling.** Rent-roll unit blocks and T12 GL rows are parsed deterministically. Calculations use source values and Python rather than asking an LLM to do arithmetic.
+2. **Document parsing.** PDFs are parsed page-wise with PyMuPDF; pages without a useful text layer are rendered at 150 DPI and OCR'd locally with Tesseract PSM 6, preserving blank page slots so citation page numbers do not shift. Page boundaries and positioned text blocks are retained. DOCX paragraphs and tables are traversed in original body order; spreadsheet cells retain source locators.
+3. **Profiling and retrieval.** A lightweight profile identifies document format/type and likely sections. IDF-weighted lexical retrieval selects evidence using field keys, labels, descriptions and less-common terms.
+4. **Extraction.** Lease abstraction fields are grouped in pairs to limit long legal-text responses and truncated JSON; other schemas are grouped in batches of four. The system prompt treats document text as untrusted evidence, prohibits unsupported inference and requires a verbatim citation for every non-null value. Only the allowed OpenRouter model IDs are accepted.
+5. **Structured tabular handling.** Rent-roll unit blocks and T12 GL rows are parsed deterministically. Selectable-text budget PDFs use coordinate bands to recover all GL detail rows and variance columns; offering memoranda use labeled sections, the unit-mix table and the subject-property comparable row. These paths do not spend model calls. Calculations use source values and Python rather than asking an LLM to do arithmetic.
 6. **Validation.** Values are normalized to the requested type, citation excerpts are checked against extracted source text, missing fields are serialized as null, and each row carries every schema key.
 
 ## Model routing and cost
@@ -25,7 +25,7 @@ PDF pages are processed concurrently in a bounded thread pool. LLM calls use a g
 
 - OCR is local and inexpensive but handwriting and dense tables may require visual escalation. OCR quality is not guaranteed for every scan.
 - Lexical retrieval is deliberately simple and dependency-light; a larger deployment could add a local embedding index after measuring recall.
-- Spreadsheet schemas vary. Specialized rent-roll/T12 parsers cover the supplied formats; generic fallback is header-driven and may need tuning for unseen layouts.
+- Document layouts vary. The budget and offering parsers are geometry/label-driven and may need new column or label hints for unseen layouts. Specialized rent-roll/T12 parsers cover the supplied formats; generic fallback is header-driven and may need tuning for unseen layouts.
 - The model's self-reported confidence is not calibrated. It is treated as a heuristic, not a probability guarantee.
 - Citation verification is a conservative text-level check; it cannot independently prove semantic entailment.
 - Durable job persistence is provided, but a multi-replica production deployment would move job dispatch to a transactional queue and add leases/heartbeats.

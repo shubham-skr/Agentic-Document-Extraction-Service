@@ -44722,10 +44722,11 @@
   "metadata": {
     "model_calls": 0,
     "failed_calls": 0,
+    "parse_failures": 0,
     "tokens_in": 0,
     "tokens_out": 0,
     "cost_usd": 0.0,
-    "latency_ms": 225,
+    "latency_ms": 174,
     "models": {}
   },
   "schema": "rent_roll_units"

@@ -39,13 +39,28 @@ def parse_xlsx(path):
  wb.close()
  return {'kind':'xlsx','text':'\n'.join(blocks),'pages':[],'tables':sheets,'profile':{'format':'xlsx','sheets':[{'name':s['name'],'rows':s['max_row'],'columns':s['max_column']} for s in sheets]}}
 def parse_docx(path):
- d=Document(path); lines=[]
- for i,p in enumerate(d.paragraphs,1):
-  t=p.text.strip()
-  if t: lines.append(f'[Paragraph {i}] {t}')
- for ti,t in enumerate(d.tables,1):
-  for ri,row in enumerate(t.rows,1): lines.append(f'[Table {ti} row {ri}] '+' | '.join(c.text.replace('\n',' / ').strip() for c in row.cells))
- return {'kind':'docx','text':'\n'.join(lines),'pages':[],'tables':[],'profile':{'format':'docx','paragraphs':len(d.paragraphs),'tables':len(d.tables)}}
+ from docx.text.paragraph import Paragraph
+ from docx.table import Table
+ from docx.oxml.text.paragraph import CT_P
+ from docx.oxml.table import CT_Tbl
+ d=Document(path); lines=[]; paragraph_index=0; table_index=0
+ for child in d.element.body.iterchildren():
+  if isinstance(child, CT_P):
+   paragraph_index += 1
+   paragraph = Paragraph(child, d)
+   text = paragraph.text.strip()
+   if text: lines.append(f'[Paragraph {paragraph_index}] {text}')
+  elif isinstance(child, CT_Tbl):
+   table_index += 1
+   table = Table(child, d)
+   for row_index, row in enumerate(table.rows, 1):
+    cells=[]
+    for cell in row.cells:
+     value=' / '.join(x.strip() for x in cell.text.splitlines() if x.strip())
+     cells.append(value)
+    lines.append(f'[Table {table_index} row {row_index}] ' + ' | '.join(cells))
+ return {'kind':'docx','text':'\n'.join(lines),'pages':[],'tables':[],'profile':{'format':'docx','paragraphs':paragraph_index,'tables':table_index}}
+
 def _render_pdf_pages(path):
  doc=fitz.open(path); results=[]
  for idx,page in enumerate(doc):
@@ -71,9 +86,10 @@ def _ocr_batch(image_bytes_list):
  buf=io.BytesIO()
  images[0].save(buf,format='TIFF',save_all=True,append_images=images[1:],compression='tiff_deflate')
  try:
-  proc=subprocess.run(['tesseract','stdin','stdout','-l',settings.ocr_lang,'--psm','11'],input=buf.getvalue(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=45,check=False,env={**os.environ,'OMP_THREAD_LIMIT':'1'})
+  proc=subprocess.run(['tesseract','stdin','stdout','-l',settings.ocr_lang,'--psm','6'],input=buf.getvalue(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=45,check=False,env={**os.environ,'OMP_THREAD_LIMIT':'1'})
   parts=proc.stdout.decode('utf-8',errors='replace').split('\x0c')
-  return [x.strip() for x in parts if x.strip()]
+  while parts and not parts[-1].strip(): parts.pop()
+  return [x.strip() for x in parts]
  except subprocess.TimeoutExpired:
   return ['']*len(image_bytes_list)
  finally:
@@ -96,7 +112,7 @@ async def parse_pdf(path):
  for p in pages:
   source=p['text'] if p['ocr'] else (p.get('layout_text') or p['text'])
   if source: lines.append(f"\n===== PAGE {p['page']} {'OCR' if p['ocr'] else 'TEXT WITH COORDINATES'} =====\n{source}")
- return {'kind':'pdf','text':'\n'.join(lines),'pages':pages,'tables':[],'profile':{'format':'pdf','page_count':len(pages),'ocr_pages':[p['page'] for p in pages if p['ocr']],'text_pages':[p['page'] for p in pages if not p['ocr']]}}
+ return {'kind':'pdf','text':'\n'.join(lines),'pages':pages,'tables':[],'source_path':str(path),'profile':{'format':'pdf','page_count':len(pages),'ocr_pages':[p['page'] for p in pages if p['ocr']],'text_pages':[p['page'] for p in pages if not p['ocr']]}}
 async def parse_document(path):
  ext=Path(path).suffix.lower()
  if ext=='.pdf': return await parse_pdf(path)

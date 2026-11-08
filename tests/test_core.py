@@ -88,5 +88,54 @@ def test_docx_pipeline_uses_grouped_json_and_completes_without_network(tmp_path,
     result = asyncio.run(execute(str(docx_path), schema))
     assert len(result['entries']) == 1
     assert set(result['entries'][0]) == set(schema['fields'])
-    assert result['metadata']['model_calls'] == 1
+    assert result['metadata']['model_calls'] == 2
     assert result['metadata']['parse_failures'] == 0
+
+
+def test_budget_pdf_parser_recovers_all_sample_rows_when_fixture_available():
+    import json
+    from pathlib import Path
+    from app.extraction import extract_budget_pdf
+    root = Path(__file__).resolve().parents[1]
+    pdf = root / 'sample/sample-data-documents/budget_001.pdf'
+    if not pdf.exists():
+        import pytest
+        pytest.skip('assignment sample documents are intentionally not packaged')
+    schema = json.loads((root / 'sample/schemas/budget_variance.json').read_text())
+    rows = extract_budget_pdf({'kind': 'pdf', 'source_path': str(pdf)}, schema)
+    assert rows is not None and len(rows) == 55
+    assert rows[0]['gl_code']['value'] == '6101-0000'
+    assert rows[1]['explanation_of_variance']['value'].startswith('The Meridian')
+
+
+def test_offering_pdf_parser_matches_sample_when_fixture_available():
+    import json
+    from pathlib import Path
+    from app.extraction import extract_offering_pdf
+    root = Path(__file__).resolve().parents[1]
+    pdf = root / 'sample/sample-data-documents/om_001.pdf'
+    if not pdf.exists():
+        import pytest
+        pytest.skip('assignment sample documents are intentionally not packaged')
+    schema = json.loads((root / 'sample/schemas/offering_memorandum.json').read_text())
+    rows = extract_offering_pdf({'kind': 'pdf', 'source_path': str(pdf)}, schema)
+    assert rows is not None and len(rows) == 1
+    assert rows[0]['property_name']['value'] == 'Marlowe Park Modern Apartments'
+    assert rows[0]['unit_types']['value'][0] == 'Aspen'
+    assert rows[0]['noi_proforma']['value'] == 3521352
+
+
+
+def test_docx_parser_preserves_paragraph_table_order(tmp_path):
+    from docx import Document
+    from app.parsers import parse_docx
+    path = tmp_path / 'order.docx'
+    doc = Document()
+    doc.add_paragraph('Before table')
+    table = doc.add_table(rows=1, cols=1)
+    table.cell(0, 0).text = 'Inside table'
+    doc.add_paragraph('After table')
+    doc.save(path)
+    parsed = parse_docx(path)
+    assert parsed['text'].index('Before table') < parsed['text'].index('Inside table')
+    assert parsed['text'].index('Inside table') < parsed['text'].index('After table')
