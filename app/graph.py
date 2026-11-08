@@ -1,7 +1,7 @@
 """LangGraph orchestration with a dependency-free fallback for local tests."""
 from typing import TypedDict, Any
 from .parsers import parse_document
-from .extraction import profile_document, normalize_schema, llm_extract, needs_llm_for_document
+from .extraction import profile_document, normalize_schema, llm_extract
 from .llm import LLM
 import time
 class PipelineState(TypedDict, total=False):
@@ -10,8 +10,8 @@ async def _parse(s): s['parsed']=await parse_document(s['path']); return s
 async def _profile(s): s['profile']=profile_document(s['parsed']); return s
 async def _normalize(s):
  from .config import settings
- if not settings.llm_api_key and needs_llm_for_document(s['parsed'],s['schema']): raise RuntimeError('LLM_API_KEY is required for semantic document extraction')
- s['normalized']=await normalize_schema(s['llm'],s['schema'],s['profile'],s['parsed']); return s
+ if not settings.llm_api_key and not (s['parsed']['kind'] in ('xlsx','csv') and any(v.get('primary') for v in s['schema']['fields'].values())): raise RuntimeError('LLM_API_KEY is required for semantic document extraction')
+ s['normalized']=await normalize_schema(s['llm'],s['schema'],s['profile']); return s
 async def _extract(s): s['entries']=await llm_extract(s['llm'],s['schema'],s['normalized'],s['parsed'],s['profile']); return s
 try:
  from langgraph.graph import StateGraph, END
@@ -33,5 +33,4 @@ async def execute(path,schema):
  for e in entries:
   fixed.append({k:make_field((e.get(k) or {}).get('value'),(e.get(k) or {}).get('citation',''),(e.get(k) or {}).get('confidence',0),(e.get(k) or {}).get('page_numbers'),(e.get(k) or {}).get('source_locations'),state['normalized'].get(k,{}).get('type') or infer_type(k,v.get('description',''))) for k,v in fields.items()})
  if primary and len(fixed)>1:fixed=[r for r in fixed if r[primary]['value'] is not None]
- plan=state.get('normalized',{}).get('_plan',{})
- return {'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'parse_failures':llm.parse_failures,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-start)*1000),'models':llm.by_model,'planner_version':plan.get('planner_version'),'document_complexity':plan.get('complexity'),'extraction_groups':len(plan.get('groups',[]))}}
+ return {'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'parse_failures':llm.parse_failures,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-start)*1000),'models':llm.by_model}}

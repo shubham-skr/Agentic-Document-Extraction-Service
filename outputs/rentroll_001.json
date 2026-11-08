@@ -44726,11 +44726,8 @@
     "tokens_in": 0,
     "tokens_out": 0,
     "cost_usd": 0.0,
-    "latency_ms": 205,
-    "models": {},
-    "planner_version": "deterministic-route",
-    "document_complexity": "low",
-    "extraction_groups": 0
+    "latency_ms": 215,
+    "models": {}
   },
   "schema": "rent_roll_units"
 }
