@@ -49,18 +49,14 @@ pytest -q
 python tools/validate.py outputs/ --schema-dir sample/schemas --truth-dir sample/sample-data-output-validated
 ```
 
-Sample documents and ground-truth answers are deliberately excluded from the submission archive per the assignment rules. To run all eight samples locally, extract only those folders from the original assignment ZIP into this repository (do not add them to your submission ZIP):
+Sample documents and ground-truth answers are deliberately excluded from the submission archive per the assignment rules. To run all eight supplied samples end-to-end, activate `.venv`, ensure `.env` contains a newly issued OpenRouter key, and execute:
 
 ```bash
-unzip -q /path/to/Outcome_Take_Home_Assignment.zip 'sample/sample-data-documents/*' 'sample/sample-data-output-validated/*' -d .
+source .venv/bin/activate
+bash scripts/run_local_samples.sh "$HOME/Downloads/OUTCOME LABS/Outcome_Take_Home_Assignment.zip"
 ```
 
-Then activate `.venv`, put a newly issued key in `.env`, and run `bash scripts/run_local_samples.sh "/absolute/path/Outcome_Take_Home_Assignment.zip"`. The script restores the sample inputs/truth, rebuilds the Docker service, submits all eight documents concurrently through the actual API, saves their results, and validates every output against ground truth. The three deterministic outputs currently included in `outputs/` score 1.000 each (box score, rent roll and T12); the remaining five require the configured LLM key. Run the CLI against a supplied document individually with:
-
-```bash
-python -m app.cli --file sample/sample-data-documents/lease_002.docx \
-  --schema sample/schemas/lease_abstraction.json --output outputs/lease_002.json
-```
+The runner restores the sample inputs and truth locally, rebuilds the Docker image, submits all eight documents concurrently through `POST /jobs`, polls each job to a terminal state, writes `outputs/*.json`, and runs the official validator against the truth files. Sample documents and truth files remain excluded from the packaged submission.
 
 ## Evaluation status
 
