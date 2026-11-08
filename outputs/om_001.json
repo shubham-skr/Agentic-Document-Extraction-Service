@@ -236,8 +236,11 @@
     "tokens_in": 0,
     "tokens_out": 0,
     "cost_usd": 0.0,
-    "latency_ms": 1591,
-    "models": {}
+    "latency_ms": 1718,
+    "models": {},
+    "planner_version": "deterministic-route",
+    "document_complexity": "low",
+    "extraction_groups": 0
   },
   "schema": "offering_memorandum"
 }

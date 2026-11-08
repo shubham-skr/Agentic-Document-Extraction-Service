@@ -3,173 +3,139 @@
     {
       "tenant_name": {
         "value": "KRESTMOOR INCORPORATED",
-        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010, by and between 250 S. HARBOR LLC, an Illinois\nlimited liability company, (\"Landlord\") and KRESTMOOR INCORPORATED, an Illinois corporation, (\"Tenant\").",
-        "confidence": 1.0,
-        "page_numbers": [
-          1
-        ]
+        "citation": "KRESTMOOR INCORPORATED, an Illinois corporation, (\"Tenant\")",
+        "confidence": 0.99
       },
       "landlord_legal_name": {
-        "value": "250 S. HARBOR LLC",
-        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010, by and between 250 S. HARBOR LLC, an Illinois\nlimited liability company, (\"Landlord\")",
-        "confidence": 1.0,
-        "page_numbers": [
-          1
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "property_name": {
         "value": "250 South Harbor",
-        "citation": "[Page 1] OFFICE BUILDING LEASE\n250 South Harbor",
-        "confidence": 0.85,
-        "page_numbers": [
-          1
-        ]
+        "citation": "250 South Harbor",
+        "confidence": 0.95
       },
       "building_address": {
-        "value": "250 South Harbor Street, Chicago, Illinois 60606",
-        "citation": "[Page 3] known as 250 South Harbor Street,\nChicago, Illinois 60606,",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "premises": {
-        "value": "Suite 500",
-        "citation": "[Page 3] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "rentable_square_footage": {
-        "value": 6840,
-        "citation": "comprised of a total of approximately 6,840 rentable square feet known as\nSuite 500",
-        "confidence": 1.0
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "pro_rata_share": {
-        "value": 12.855,
-        "citation": "[Page 4] Tenant's Proportionate Share for purposes of Additional Rent is 12.855%.",
-        "confidence": 0.95,
-        "page_numbers": [
-          4
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "permitted_use": {
-        "value": "operation of law office or other general office purpose",
-        "citation": "3. OCCUPANCY. Tenant shall use and occupy the Premises for the operation of law office or other general\noffice purpose.",
-        "confidence": 0.95,
-        "page_numbers": [
-          4
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "lease_execution_date": {
         "value": "2010-03-04",
-        "citation": "[Page 1] THIS LEASE is made as of the 4\" day of March, 2010",
-        "confidence": 0.95,
-        "page_numbers": [
-          1
-        ]
+        "citation": "THIS LEASE is made as of the 4\" day of March, 2010",
+        "confidence": 0.99
       },
       "lease_commencement_date": {
         "value": "2010-08-01",
-        "citation": "[Page 1] commencing on the 1* day of August, 2010",
-        "confidence": 0.95,
-        "page_numbers": [
-          1
-        ]
+        "citation": "commencing on the 1* day of August, 2010",
+        "confidence": 0.99
       },
       "rent_commencement_date": {
         "value": "2010-08-01",
-        "citation": "commencing on the 1* day of August, 2010, and terminating on the 28\" day of February, 2021 (the \"Term\"), both dates inclusive",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "citation": "PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00",
+        "confidence": 0.95
       },
       "lease_expiration_date": {
         "value": "2021-02-28",
-        "citation": "[Page 3] terminating on the 28\" day of February, 2021 (the \"Term\"), both dates inclusive",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "citation": "terminating on the 28\" day of February, 2021",
+        "confidence": 0.99
       },
       "lease_term_months": {
         "value": 127,
-        "citation": "[Page 2] for the term of Ten (10) years Seven (7) months commencing on the 1* day of August, 2010,\nand terminating on the 28\" day of February, 2021 (the \"Term\")",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "citation": "term of Ten (10) years Seven (7) months",
+        "confidence": 0.99
       },
       "rent_schedule_start_dates": {
         "value": [
           "2010-08-01",
           "2011-08-01",
+          "2012-08-01",
+          "2013-08-01",
+          "2014-08-01",
+          "2015-08-01",
+          "2016-08-01",
+          "2017-08-01",
+          "2018-08-01",
+          "2019-08-01",
           "2020-08-01"
         ],
-        "citation": "[Page 2] August 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "citation": "[Page 3] August 1, 2010 through July 31, 2011 $11,934.00\n[Page 3] August 1, 2011 through July 31, 2012 $12,196.00\n[Page 3] August 1, 2012 through July 31, 2013 $12,458.00\n[Page 3] August 1, 2013 through July 31, 2014 $12,720.00\n[Page 3] August 1, 2014 through July 31, 2015 $12,982.00\n[Page 3] August 1, 2019 through July 31, 2020 $14,292.00\n[Page 3] August 1, 2020 through February 28, 2021 $14,554.00 Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever. If the Term commences other than on the first day of a month or ends",
+        "confidence": 0.97
       },
       "rent_schedule_end_dates": {
         "value": [
           "2011-07-31",
           "2012-07-31",
+          "2013-07-31",
+          "2014-07-31",
+          "2015-07-31",
+          "2016-07-31",
+          "2017-07-31",
+          "2018-07-31",
+          "2019-07-31",
+          "2020-07-31",
           "2021-02-28"
         ],
-        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "citation": "[Page 3] August 1, 2010 through July 31, 2011 $11,934.00\n[Page 3] August 1, 2011 through July 31, 2012 $12,196.00\n[Page 3] August 1, 2012 through July 31, 2013 $12,458.00\n[Page 3] August 1, 2013 through July 31, 2014 $12,720.00\n[Page 3] August 1, 2014 through July 31, 2015 $12,982.00\n[Page 3] August 1, 2019 through July 31, 2020 $14,292.00\n[Page 3] August 1, 2020 through February 28, 2021 $14,554.00 Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever. If the Term commences other than on the first day of a month or ends",
+        "confidence": 0.97
       },
       "rent_schedule_monthly_rent": {
         "value": [
-          11934,
-          12196,
-          14554
+          11934.0,
+          12196.0,
+          12458.0,
+          12720.0,
+          12982.0,
+          13244.0,
+          13506.0,
+          13768.0,
+          14030.0,
+          14292.0,
+          14554.0
         ],
-        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "citation": "[Page 3] August 1, 2010 through July 31, 2011 $11,934.00\n[Page 3] August 1, 2011 through July 31, 2012 $12,196.00\n[Page 3] August 1, 2012 through July 31, 2013 $12,458.00\n[Page 3] August 1, 2013 through July 31, 2014 $12,720.00\n[Page 3] August 1, 2014 through July 31, 2015 $12,982.00\n[Page 3] August 1, 2019 through July 31, 2020 $14,292.00\n[Page 3] August 1, 2020 through February 28, 2021 $14,554.00 Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever. If the Term commences other than on the first day of a month or ends",
+        "confidence": 0.97
       },
       "rent_schedule_annual_rent_per_rsf": {
-        "value": [
-          20.94,
-          21.4,
-          25.53
-        ],
-        "citation": "[Page 2] comprised of a total of approximately 6,840 rentable square feet known as Suite 500 in the building ... PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
-      },
-      "total_base_rent": {
         "value": null,
         "citation": "",
         "confidence": 0.0
       },
+      "total_base_rent": {
+        "value": 1675438.0,
+        "citation": "[Page 3] August 1, 2010 through July 31, 2011 $11,934.00\n[Page 3] August 1, 2011 through July 31, 2012 $12,196.00\n[Page 3] August 1, 2012 through July 31, 2013 $12,458.00\n[Page 3] August 1, 2013 through July 31, 2014 $12,720.00\n[Page 3] August 1, 2014 through July 31, 2015 $12,982.00\n[Page 3] August 1, 2019 through July 31, 2020 $14,292.00\n[Page 3] August 1, 2020 through February 28, 2021 $14,554.00 Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever. If the Term commences other than on the first day of a month or ends",
+        "confidence": 0.96
+      },
       "base_rent_escalation": {
-        "value": "fixed steps per schedule",
-        "citation": "[Page 2] PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00\nAugust 1, 2011 through July 31, 2012 $12,196.00\nAugust 1, 2020 through February 28, 2021 $14,554.00",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "free_rent_months": {
         "value": 0,
-        "citation": "[Page 2] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever.",
-        "confidence": 0.95,
-        "page_numbers": [
-          2
-        ]
+        "citation": "PERIOD MONTHLY BASE RENT\nAugust 1, 2010 through July 31, 2011 $11,934.00",
+        "confidence": 0.9
       },
       "security_deposit_amount": {
         "value": null,
@@ -182,36 +148,24 @@
         "confidence": 0.0
       },
       "expense_structure": {
-        "value": "base year 2011",
-        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "value": "Base Year",
+        "citation": "Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
+        "confidence": 0.95
       },
       "base_year_expenses": {
         "value": 2011,
-        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "citation": "Tenant shall pay to Landlord as Additional Rent for Operating Expenses, an amount equal to Tenant's Proportionate Share of the Operating Expenses (as hereinafter defined) which are in excess of the Operating Expenses incurred in the Base Year of 2011.",
+        "confidence": 0.95
       },
       "base_year_taxes": {
         "value": 2011,
-        "citation": "[Page 3] Tenant shall pay to Landlord as Additional Rent for Taxes an amount equal to Tenant's Proportionate Share (as defined below) of the Taxes which are in excess of the Taxes paid in the Base Year of 2011.",
-        "confidence": 0.95,
-        "page_numbers": [
-          3
-        ]
+        "citation": "Tenant shall pay to Landlord as Additional Rent for Taxes an amount equal to Tenant's Proportionate Share (as defined below) of the Taxes which are in excess of the Taxes paid in the Base Year of 2011.",
+        "confidence": 0.95
       },
       "electricity_provision": {
-        "value": "Monthly Electricity Usage Fee based on Tenant's actual usage",
-        "citation": "[Page 5] Tenant shall pay to Landlord as Additional Rent for electricity usage, as set forth in Paragraph 6A(a) hereinbelow, a monthly Electricity Usage Fee based on Tenant's actual usage thereof (if applicable).",
-        "confidence": 0.9,
-        "page_numbers": [
-          5
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "parking_spaces": {
         "value": null,
@@ -224,17 +178,14 @@
         "confidence": 0.0
       },
       "ti_allowance_total": {
-        "value": 14000,
-        "citation": "Landlord shall provide Tenant a Refurbishment Allowance, as defined herein, of up to\nFourteen Thousand and 00/100 Dollars ($14,000.00, \"Refurbishment Allowance\")",
-        "confidence": 0.85
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "renewal_option_exists": {
-        "value": true,
-        "citation": "[Page 2] 31. OPTION TO RENEW.",
-        "confidence": 0.65,
-        "page_numbers": [
-          2
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "renewal_options_count": {
         "value": null,
@@ -252,12 +203,9 @@
         "confidence": 0.0
       },
       "early_termination_right": {
-        "value": true,
-        "citation": "[Page 2] 32. OPTION TO TERMINATE.",
-        "confidence": 0.9,
-        "page_numbers": [
-          2
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "termination_fee_description": {
         "value": null,
@@ -265,9 +213,9 @@
         "confidence": 0.0
       },
       "right_to_sublet": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": "With the prior written consent of Landlord, which consent shall not be unreasonably withheld",
+        "citation": "15. ASSIGNMENT AND SUBLETTING. Tenant shall not, without the prior written consent of Landlord, which consent shall not be unreasonably withheld (i) assign this Lease or any interest hereunder; (ii) permit any assignment of this Lease by operation of law; (iii) sublet the Premises or any part thereof",
+        "confidence": 0.95
       },
       "guarantor_name": {
         "value": null,
@@ -292,27 +240,30 @@
     }
   ],
   "metadata": {
-    "model_calls": 42,
+    "model_calls": 9,
     "failed_calls": 0,
     "parse_failures": 0,
-    "tokens_in": 132547,
-    "tokens_out": 59523,
-    "cost_usd": 0.32812775000000005,
-    "latency_ms": 484371,
+    "tokens_in": 75258,
+    "tokens_out": 23489,
+    "cost_usd": 0.37107675,
+    "latency_ms": 228625,
     "models": {
       "google/gemini-3.8-flash": {
-        "calls": 41,
-        "tokens_in": 131178,
-        "tokens_out": 59063,
-        "cost_usd": 0.31986975000000006
+        "calls": 1,
+        "tokens_in": 8172,
+        "tokens_out": 6193,
+        "cost_usd": 0.02935275
       },
       "google/gemini-3.1-pro-preview": {
-        "calls": 1,
-        "tokens_in": 1369,
-        "tokens_out": 460,
-        "cost_usd": 0.008258
+        "calls": 8,
+        "tokens_in": 67086,
+        "tokens_out": 17296,
+        "cost_usd": 0.34172399999999997
       }
-    }
+    },
+    "planner_version": "schema-aware-v1",
+    "document_complexity": "high",
+    "extraction_groups": 7
   },
   "schema": "lease_abstraction"
 }
