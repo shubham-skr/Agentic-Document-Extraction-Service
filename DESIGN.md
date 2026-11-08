@@ -2,38 +2,29 @@
 
 ## Summary
 
-I use a general, schema-driven, evidence-first pipeline. Deterministic parsing handles predictable structures; model reasoning is reserved for ambiguous semantics. The service does not assume a fixed field list or hardcode sample values. It personalizes the extraction strategy for each document by planning from the actual input schema and a structural outline of that document.
+The service uses a general, schema-driven, evidence-first pipeline. Deterministic parsing handles predictable structures; model reasoning is used for ambiguous semantics. Output keys are preserved exactly. The extraction strategy is personalized at runtime from the supplied document and its schema, not from hardcoded sample answers or property names.
 
-## Pipeline
+## Pipeline and decisions
 
-1. **Parse and preserve structure.** PDFs are read page by page with PyMuPDF; pages without a useful text layer are OCR'd locally with Tesseract. Page boundaries, layout and source locators are preserved. DOCX paragraphs and tables are traversed in body order. Spreadsheet cells retain sheet/cell coordinates.
-2. **Profile the document.** Format, page/OCR characteristics and likely section headings are summarized.
-3. **Plan around the supplied schema.** A fast allowed model receives the complete field descriptions and compact document outline. It determines field meaning, semantic equivalents/alternate terminology, likely headings, table/calculation strategy, dependencies and logical groups. It does not return values. A sanitizer rejects unknown keys, de-duplicates fields, caps groups at eight fields, and assigns every requested field exactly once. If planning fails, deterministic type inference and schema-derived groups provide a safe fallback.
-4. **Retrieve hybrid evidence.** The planner's document-specific aliases, queries and section hints supplement lexical/phrase scoring. Retrieval keeps neighbouring lines and locators. This avoids relying on the exact schema keyword and improves recall where contracts use alternative terminology.
-5. **Route and extract in groups.** High-complexity or OCR-heavy documents use the configured strong model for grouped extraction. Simpler documents use the fast model. Medium-complexity groups are routed by semantic strategy. A failed fast group may escalate once to the strong model. There is no per-field retry loop; the intended model-call pattern is one planner call, one call per coherent group, and one batched review.
-6. **Use deterministic parsing where appropriate.** Existing CSV/XLSX, financial budget-PDF and offering-memorandum parsers are retained. Rent schedules are reconstructed from date-bounded source rows with schema-discovered output roles. Python computes schedule totals and annual rent per RSF from source values. Variable escalation descriptions are interpreted by the model, not inferred from rent differences alone.
-7. **Validate evidence and meaning separately.** Citation authenticity checks whether the excerpt exists in source text at the stated locator; it does not require a field keyword to appear. A separate batched semantic review checks entailment, preserves distinctions between similar contractual concepts, and can correct or null a candidate. Unsupported or unverifiable non-null values are cleared.
-8. **Serve jobs asynchronously.** FastAPI returns a job ID quickly, SQLite stores job state, organization IDs scope reads, request hashes support idempotency, and terminal statuses are immutable. Bounded concurrency and a 1,700-second deadline fit within the assignment's 1,800-second per-document gate.
+1. **Parse and preserve structure.** PDFs use PyMuPDF; pages without useful text are OCR'd locally with Tesseract. Page boundaries are retained. DOCX paragraphs/tables are traversed in body order. Spreadsheet cells retain sheet/cell coordinates.
+2. **Profile and plan.** A fast allowed model receives the schema and a compact structural outline. It generates concise per-field intent, semantic alternatives, search queries, likely sections, strategy, dependencies and coherent groups. The planner does not extract values. A sanitizer rejects unknown keys, de-duplicates groups, assigns every schema key exactly once and caps groups at eight fields. Predictable structured inputs bypass planning.
+3. **Retrieve evidence.** Planner-generated alternatives and section hints supplement lexical, phrase and IDF-weighted retrieval. The system preserves neighbouring lines and source locators. This is lightweight hybrid lexical retrieval, not a vector database.
+4. **Route by group semantics.** Direct names, dates and labeled values prefer the fast model. Groups involving legal options, conditions, calculations or narrative clauses use the strong model. A long document is not, by itself, a reason to send every group to the strong model. A failed fast-model group may escalate once.
+5. **Review and recover.** One batched semantic review checks populated predictions. Missing fields are recovered in batches of up to ten with expanded evidence, rather than retrying each field separately. For scanned PDFs, high-risk/uncertain fields can be checked against up to two original page images using the configured vision model.
+6. **Calculate from source.** Structured CSV/XLSX, supported budget PDFs and offering memoranda retain deterministic parsers. Date/rent rows are reconstructed from the document and schema-discovered field roles. Python computes total base rent and annual rent per RSF after LLM review/recovery so a later null decision cannot erase a deterministic result. Escalation wording is not guessed from changing rent values alone.
+7. **Validate source and meaning separately.** Citation authenticity verifies that quoted text occurs in the source; it does not require the schema keyword to appear. Semantic review assesses whether evidence entails the requested concept and value. Page numbers can be inferred from authentic PDF citations when the model omits the locator.
+8. **Serve jobs.** FastAPI returns job IDs quickly; SQLite persists job state; organization IDs scope reads; request hashes support idempotency; terminal states are immutable; bounded concurrency and a 1,700-second deadline fit within the assignment's 1,800-second gate.
 
-## Model strategy and cost
+## Model and cost tradeoffs
 
-The planner uses the fast model because it only interprets the schema and document outline. Complex extraction and its single batched semantic review use the configured strong model. Structured inputs that are reliably parsed deterministically bypass the LLM. A failed fast-model group is allowed one strong-model escalation; failed groups are not retried field by field. The service records calls, tokens and provider-reported cost by model. I do not claim a dollar spend without a valid new key and a measured provider usage report.
+The fast model handles planning and straightforward evidence extraction. The strong model is reserved for semantically difficult groups and batched recovery. The vision model is invoked only for high-risk/uncertain fields on scanned pages. Deterministic routes bypass LLM calls. This should improve the balance between accuracy and cost compared with routing every field group in every complex document to the strong model. Calls, tokens and per-model cost are recorded; actual provider spend must be confirmed from live usage.
 
-## Accuracy evidence
+## Measured evidence and limitations
 
-The applicant's last live Docker/OpenRouter run on the previous code completed eight jobs with an overall official score of 0.861. Five non-lease documents were approximately 1.000; the leases scored 0.600, 0.675 and 0.618. The field-level comparison showed that rent schedule arrays and totals were missing, and that several legal clauses used terminology different from schema labels.
+The applicant's most recent live Docker/OpenRouter run of the previous schema-aware version completed 8/8 jobs, but its official mean was **0.847**. The three lease scores were 0.675, 0.675 and 0.425. Each lease used 8–9 calls, reported costs between $0.368 and $0.371, and completed in 220–229 seconds. This established that the call-count reduction worked, but lease recall remained poor.
 
-The new deterministic schedule reconstruction was run offline against OCR text extracted from the three supplied lease documents and checked with the official validator. When its schedule arrays, total base rent and annual rent per RSF were applied to the applicant's existing predictions, the lease scores became 0.725, 0.700 and 0.700 and the eight-document mean became 0.890. This is a measured improvement attributable to schedule reconstruction only. The new planner, strong-model routing and batched semantic review still require a live OpenRouter run; no improved live result is claimed.
-
-## Reliability and tradeoffs
-
-- Local OCR avoids a paid OCR service and keeps the allowed-provider restriction, but noisy scans can still impair extraction.
-- A planner adds one inexpensive model call, but reduces repeated generic prompts and improves retrieval/query personalization.
-- Strong-model routing improves reasoning where ambiguity is high, at a higher per-token cost; deterministic parsing offsets that cost for structured documents.
-- Hybrid lexical/phrase retrieval is light and transparent, but it is not a full embedding/vector retrieval system.
-- Authenticity checks verify text presence, not meaning. The semantic reviewer handles entailment separately; neither is a mathematical guarantee.
-- The current job store uses SQLite and a single container worker process. A larger deployment would use a durable transactional queue and worker leases/heartbeats.
+A separate offline operation applied deterministic rent-schedule calculations to those same outputs and raised the validator mean to **0.850**. That improvement is attributable only to deterministic schedule calculations. The current per-group model routing, bounded missing-field recovery and visual review are covered by **24 passing mocked/offline tests**, but have not yet been live-evaluated against OpenRouter or Docker in this environment. No improved live score, provider cost or 10-document concurrency result is claimed.
 
 ## Further work
 
-Run controlled same-evidence model comparisons and per-field precision/recall; calibrate the strong-model threshold against accuracy and cost; add embedding retrieval only if its recall gain justifies it; add OCR confidence and targeted vision fallback for low-quality regions; and load-test ten simultaneous LLM-heavy jobs with provider rate limits.
+Run same-evidence Flash/Pro comparisons; measure field-level precision/recall and planner output length; check visual page selection on the live scanned leases; tune recovery batch size against rate limits and cost; and load-test ten simultaneous LLM-heavy jobs.

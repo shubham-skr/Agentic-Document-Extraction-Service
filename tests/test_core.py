@@ -100,12 +100,13 @@ def test_docx_pipeline_uses_planner_grouped_extraction_and_one_review(tmp_path, 
                                   'citation': '[Paragraph 3] Landlord: Example Holdings LLC', 'confidence': .99},
                 'rent_start_date': {'value': None, 'citation': '', 'confidence': 0},
             }})
-        if 'required_shape' in request:  # one batched semantic review
+        if 'required_shape' in request:  # one batched semantic review of populated candidates
             return json_module.dumps({'decisions': {
                 'tenant_name': {'decision': 'keep', 'confidence': .99},
                 'landlord_name': {'decision': 'keep', 'confidence': .99},
-                'rent_start_date': {'decision': 'keep', 'confidence': .99},
             }})
+        if 'output' in request:  # bounded recovery for unresolved fields
+            return json_module.dumps({'fields': {'rent_start_date': {'value': None, 'citation': '', 'confidence': 0}}})
         raise AssertionError('Unexpected model stage')
 
     monkeypatch.setattr(settings, 'llm_api_key', 'test-key-never-used-for-network')
@@ -116,13 +117,14 @@ def test_docx_pipeline_uses_planner_grouped_extraction_and_one_review(tmp_path, 
     assert entry['tenant_name']['value'] == 'Acme Properties LLC'
     assert entry['landlord_name']['value'] == 'Example Holdings LLC'
     assert entry['rent_start_date']['value'] is None
-    assert result['metadata']['model_calls'] == 3  # planner + one group + one batched review
+    assert result['metadata']['model_calls'] == 4  # planner + group + review + one batched recovery
     assert result['metadata']['planner_version'] == 'schema-aware-v1'
     assert result['metadata']['document_complexity'] == 'high'
     assert result['metadata']['extraction_groups'] == 1
     assert calls[0][0] == settings.fast_model
-    assert calls[1][0] == settings.strong_model
+    assert calls[1][0] == settings.fast_model  # direct facts use Flash despite high document complexity
     assert calls[2][0] == settings.strong_model
+    assert calls[3][0] == settings.strong_model  # unresolved fields are recovered in one batch
 
 
 def test_budget_pdf_parser_recovers_all_sample_rows_when_fixture_available():
@@ -260,3 +262,143 @@ def test_schedule_role_discovery_uses_schema_descriptions_not_fixed_sample_keys(
     }}
     assert _schedule_field_roles(schema) == {
         'starts': 'period_begin_dates', 'ends': 'period_finish_dates', 'monthly': 'base_rent_installments'}
+
+
+def test_group_router_uses_field_complexity_not_global_document_complexity():
+    from app.extraction import _route_model
+    from app.config import settings
+    normalized = {'_plan': {'complexity': 'high'},
+                  'tenant_name': {'strategy': 'direct', 'semantic_intent': 'legal name of tenant'},
+                  'landlord_name': {'strategy': 'direct', 'semantic_intent': 'legal name of landlord'},
+                  'renewal_option': {'strategy': 'boolean', 'semantic_intent': 'whether tenant holds an option to renew'},
+                  'termination_terms': {'strategy': 'narrative', 'semantic_intent': 'conditions and fees for early termination'}}
+    assert _route_model(normalized, {}, ['tenant_name', 'landlord_name']) == settings.fast_model
+    assert _route_model(normalized, {}, ['renewal_option', 'termination_terms']) == settings.strong_model
+
+
+def test_schedule_calculations_run_from_aligned_source_values_after_review():
+    from app.extraction import apply_schedule_calculations, make_field
+    schema = {'fields': {
+        'rent_schedule_start_dates': {'name': 'Rent Schedule Start Dates', 'description': 'List of start dates.'},
+        'rent_schedule_end_dates': {'name': 'Rent Schedule End Dates', 'description': 'List of end dates.'},
+        'rent_schedule_monthly_rent': {'name': 'Rent Schedule Monthly Rent', 'description': 'List of monthly rent.'},
+        'rent_schedule_annual_rent_per_rsf': {'name': 'Rent Schedule Annual Rent per RSF', 'description': 'Annual rent per square foot.'},
+        'rentable_square_footage': {'name': 'Rentable Square Footage', 'description': 'Rentable square footage as a number.'},
+        'total_base_rent': {'name': 'Total Base Rent', 'description': 'Sum of all base rent due over the term.'},
+        'base_rent_escalation': {'name': 'Base Rent Escalation', 'description': 'How base rent increases.'},
+    }}
+    entry = {
+        'rent_schedule_start_dates': make_field(['2020-01-01'], '[Page 1] 2020-01-01 through 2020-12-31 $1,000', typ='array', item_type='date'),
+        'rent_schedule_end_dates': make_field(['2020-12-31'], '[Page 1] 2020-01-01 through 2020-12-31 $1,000', typ='array', item_type='date'),
+        'rent_schedule_monthly_rent': make_field([1000], '[Page 1] 2020-01-01 through 2020-12-31 $1,000', typ='array', item_type='number'),
+        'rentable_square_footage': make_field(1200, '[Page 1] 1,200 rentable square feet', typ='number'),
+        'rent_schedule_annual_rent_per_rsf': {'value': None, 'citation': '', 'confidence': 0},
+        'total_base_rent': {'value': None, 'citation': '', 'confidence': 0},
+        'base_rent_escalation': {'value': None, 'citation': '', 'confidence': 0},
+    }
+    out = apply_schedule_calculations([entry], schema)[0]
+    assert out['rent_schedule_annual_rent_per_rsf']['value'] == [10.0]
+    assert out['total_base_rent']['value'] == 12000.0
+    assert out['base_rent_escalation']['value'] == 'none'
+
+
+def test_compact_planner_guidance_aliases_are_normalized():
+    from app.extraction import _sanitize_plan
+    schema = {'fields': {'post_expiry_rent': {'name': 'Holdover Rent',
+              'description': 'Rent payable when tenant remains after lease expiration.'}}}
+    plan = _sanitize_plan({'complexity': 'medium', 'field_guidance': {
+        'post_expiry_rent': {'intent': 'compensation for occupancy after expiry',
+                             'terms': ['holding over', 'continued occupancy'],
+                             'queries': ['holding over rent'], 'sections': ['HOLDING OVER'],
+                             'strategy': 'narrative'}}}, schema,
+        {'document_type': 'contract'}, {'text': 'x', 'profile': {'page_count': 1}})
+    assert plan['post_expiry_rent']['semantic_intent'].startswith('compensation')
+    assert plan['post_expiry_rent']['aliases'] == ['holding over', 'continued occupancy']
+    assert plan['post_expiry_rent']['search_queries'] == ['holding over rent']
+    assert plan['post_expiry_rent']['section_hints'] == ['HOLDING OVER']
+
+
+def test_page_number_can_be_inferred_from_authentic_citation_without_locator():
+    from app.extraction import _infer_page_numbers
+    source = '''===== PAGE 1 OCR =====
+LEASE AGREEMENT
+Tenant: Example LLC
+===== PAGE 2 OCR =====
+SECURITY DEPOSIT: $2406 21
+===== PAGE 3 OCR =====
+HOLDING OVER. Tenant shall pay 150% of rent.
+'''
+    assert _infer_page_numbers('SECURITY DEPOSIT: $2406 21', source) == [2]
+
+
+def test_unresolved_field_recovery_is_batched_not_one_call_per_field():
+    import asyncio
+    import json as json_module
+    from app.extraction import recover_missing_fields, empty_field
+
+    class FakeLLM:
+        def __init__(self): self.calls = 0
+        async def complete(self, messages, **kwargs):
+            self.calls += 1
+            payload = json_module.loads(messages[-1]['content'])
+            out = {}
+            for key in payload['fields']:
+                # The source citations are constructed below and must be authentic.
+                line = next(x for x in source.splitlines() if x.lower().startswith('[paragraph') and key in x)
+                out[key] = {'value': key.upper(), 'citation': line, 'confidence': .95}
+            return json_module.dumps({'fields': out})
+
+    source = '\n'.join(f'[Paragraph {i+1}] {f"field_{i}"}: source fact {i}' for i in range(11))
+    schema = {'fields': {f'field_{i}': {'name': f'Field {i}', 'description': f'Value for field {i}.'} for i in range(11)}}
+    normalized = {k: {'type': 'string', 'semantic_intent': f'meaning of {k}', 'aliases': [],
+                      'section_hints': [], 'strategy': 'direct'} for k in schema['fields']}
+    normalized['_plan'] = {'complexity': 'high'}
+    entries = [{k: empty_field() for k in schema['fields']}]
+    llm = FakeLLM()
+    result = asyncio.run(recover_missing_fields(llm, schema, normalized,
+                   {'text': source}, {'document_type': 'contract'}, entries))
+    assert llm.calls == 2
+    assert all(result[0][k]['value'] == k.upper() for k in schema['fields'])
+
+
+def test_vision_review_can_recover_missing_high_risk_value_from_ocr_page(tmp_path):
+    import asyncio
+    import json as json_module
+    import fitz
+    from app.extraction import vision_review, empty_field
+
+    pdf_path = tmp_path / 'scan.pdf'
+    doc = fitz.open()
+    doc.new_page(width=612, height=792)
+    doc.new_page(width=612, height=792)
+    doc.save(pdf_path)
+    doc.close()
+
+    class FakeVisionLLM:
+        def __init__(self): self.called = False
+        async def complete(self, messages, **kwargs):
+            self.called = True
+            return json_module.dumps({'fields': {
+                'security_deposit_amount': {
+                    'value': 2150,
+                    'citation': '[Page 2] SECURITY DEPOSIT: $2,150.00',
+                    'confidence': .99,
+                    'page_numbers': [2]
+                }
+            }})
+
+    parsed = {'kind': 'pdf', 'source_path': str(pdf_path),
+              'text': '===== PAGE 1 TEXT =====\nLEASE AGREEMENT\n'
+                      '===== PAGE 2 OCR =====\nSECURITY DEPOSIT: $2,150.00\n',
+              'pages': [{'page': 1, 'ocr': False}, {'page': 2, 'ocr': True}]}
+    schema = {'fields': {'security_deposit_amount': {
+        'name': 'Security Deposit Amount',
+        'description': 'Cash security deposit amount as a number. Use amended figure that governs.'}}}
+    normalized = {'security_deposit_amount': {'type': 'number', 'semantic_intent': 'cash security amount',
+                    'aliases': ['security deposit'], 'section_hints': ['SECURITY DEPOSIT']}}
+    entries = [{'security_deposit_amount': empty_field()}]
+    llm = FakeVisionLLM()
+    out = asyncio.run(vision_review(llm, parsed, schema, normalized, entries))
+    assert llm.called
+    assert out[0]['security_deposit_amount']['value'] == 2150
+    assert out[0]['security_deposit_amount']['page_numbers'] == [2]

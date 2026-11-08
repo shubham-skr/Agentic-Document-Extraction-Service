@@ -6,7 +6,7 @@
         "citation": "[Paragraph 102] THIS LEASE is made as of the 21st day of August, 2025, by and between 850 N. HARLOW AVENUE LLC, an Illinois limited liability company (\"Landlord\"), and KESTREL ANALYTICS USA LLC, a Delaware limited liability company (\"Tenant\").",
         "confidence": 1.0,
         "source_locations": [
-          "Paragraph 102"
+          "[Paragraph 102]"
         ]
       },
       "landlord_legal_name": {
@@ -14,39 +14,39 @@
         "citation": "[Paragraph 102] THIS LEASE is made as of the 21st day of August, 2025, by and between 850 N. HARLOW AVENUE LLC, an Illinois limited liability company (\"Landlord\"), and KESTREL ANALYTICS USA LLC, a Delaware limited liability company (\"Tenant\").",
         "confidence": 1.0,
         "source_locations": [
-          "Paragraph 102"
+          "[Paragraph 102]"
         ]
       },
       "property_name": {
         "value": "ONE HARLOW PLACE",
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet known as Suite 310 in the building (the \"Building\") located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
-        "confidence": 1.0,
+        "citation": "[Paragraph 103] in the building (the \"Building\") located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
+        "confidence": 0.95,
         "source_locations": [
-          "Paragraph 103"
+          "[Paragraph 103]"
         ]
       },
       "building_address": {
         "value": "850 N. HARLOW AVENUE, Naperville, Illinois 60540",
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet known as Suite 310 in the building (the \"Building\") located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
+        "citation": "[Paragraph 103] commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540",
         "confidence": 1.0,
         "source_locations": [
-          "Paragraph 103"
+          "[Paragraph 103]"
         ]
       },
       "premises": {
         "value": "Suite 310",
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet known as Suite 310 in the building",
+        "citation": "[Paragraph 103] comprised of approximately 1,842 rentable square feet known as Suite 310",
         "confidence": 1.0,
         "source_locations": [
-          "Paragraph 103"
+          "[Paragraph 103]"
         ]
       },
       "rentable_square_footage": {
         "value": 1842,
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet",
+        "citation": "[Paragraph 103] comprised of approximately 1,842 rentable square feet known as Suite 310",
         "confidence": 1.0,
         "source_locations": [
-          "Paragraph 103"
+          "[Paragraph 103]"
         ]
       },
       "pro_rata_share": {
@@ -55,9 +55,9 @@
         "confidence": 0.0
       },
       "permitted_use": {
-        "value": "general office purposes and no other purpose",
-        "citation": "[Paragraph 117] OCCUPANCY. Tenant shall use and occupy the Premises for general office purposes and no other purpose.",
-        "confidence": 1.0,
+        "value": "general office purposes",
+        "citation": "[Paragraph 117] Tenant shall use and occupy the Premises for general office purposes and no other purpose.",
+        "confidence": 0.99,
         "source_locations": [
           "Paragraph 117"
         ]
@@ -65,15 +65,15 @@
       "lease_execution_date": {
         "value": "2025-08-21",
         "citation": "[Paragraph 102] THIS LEASE is made as of the 21st day of August, 2025",
-        "confidence": 1.0,
+        "confidence": 0.99,
         "source_locations": [
           "Paragraph 102"
         ]
       },
       "lease_commencement_date": {
         "value": "2025-10-01",
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet known as Suite 310 in the building (the \"Building\") located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540, for the term of one (1) year and seven (7) months, commencing on the 1st day of October, 2025",
-        "confidence": 1.0,
+        "citation": "[Paragraph 103] commencing on the 1st day of October, 2025",
+        "confidence": 0.99,
         "source_locations": [
           "Paragraph 103"
         ]
@@ -81,15 +81,12 @@
       "rent_commencement_date": {
         "value": "2026-01-01",
         "citation": "[Paragraph 114] beginning as of the commencement of the Term, monthly Base Rent shall abate in an amount equal to the first three (3) full calendar months of Base Rent.",
-        "confidence": 0.9,
-        "source_locations": [
-          "Paragraph 114"
-        ]
+        "confidence": 0.9
       },
       "lease_expiration_date": {
         "value": "2027-04-30",
-        "citation": "[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet known as Suite 310 in the building (the \"Building\") located on the Land (the \"Land\") commonly known as ONE HARLOW PLACE, 850 N. HARLOW AVENUE, Naperville, Illinois 60540, for the term of one (1) year and seven (7) months, commencing on the 1st day of October, 2025 and terminating on the 30th day of April, 2027",
-        "confidence": 1.0,
+        "citation": "[Paragraph 103] terminating on the 30th day of April, 2027",
+        "confidence": 0.99,
         "source_locations": [
           "Paragraph 103"
         ]
@@ -97,7 +94,7 @@
       "lease_term_months": {
         "value": "19",
         "citation": "[Paragraph 103] for the term of one (1) year and seven (7) months",
-        "confidence": 1.0,
+        "confidence": 0.99,
         "source_locations": [
           "Paragraph 103"
         ]
@@ -106,44 +103,44 @@
         "value": [
           "2025-10-01"
         ],
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst",
         "confidence": 0.97
       },
       "rent_schedule_end_dates": {
         "value": [
           "2027-04-30"
         ],
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst",
         "confidence": 0.97
       },
       "rent_schedule_monthly_rent": {
         "value": [
           2845.0
         ],
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst",
         "confidence": 0.97
       },
       "rent_schedule_annual_rent_per_rsf": {
         "value": [
           18.53
         ],
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00\n[Paragraph 103] Landlord hereby leases to Tenant and Tenant hereby accepts the premises (the \"Premises\") designated on the plan attached hereto as Exhibit A, comprised of approximately 1,842 rentable square feet",
-        "confidence": 0.95
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst\n[Paragraph 103] comprised of approximately 1,842 rentable square feet known as Suite 310",
+        "confidence": 0.97
       },
       "total_base_rent": {
         "value": 54055.0,
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
-        "confidence": 0.96
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst",
+        "confidence": 0.97
       },
       "base_rent_escalation": {
         "value": "none",
-        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027\t$2,845.00",
+        "citation": "[Paragraph 110] October 1, 2025 through April 30, 2027 $2,845.00 [Paragraph 112] Each monthly Base Rent payment shall be made in advance on the first day of each and every month during the Term, without any set-off or deduction whatsoever, except that Tenant shall pay the first full month's inst",
         "confidence": 0.94
       },
       "free_rent_months": {
         "value": 3,
-        "citation": "[Paragraph 114] monthly Base Rent shall abate in an amount equal to the first three (3) full calendar months of Base Rent.",
-        "confidence": 0.8
+        "citation": "[Paragraph 114] beginning as of the commencement of the Term, monthly Base Rent shall abate in an amount equal to the first three (3) full calendar months of Base Rent.",
+        "confidence": 0.95
       },
       "security_deposit_amount": {
         "value": null,
@@ -171,11 +168,11 @@
         "confidence": 0.0
       },
       "electricity_provision": {
-        "value": "Separately metered and billed directly to Tenant",
+        "value": "separately metered and billed directly to, and be the sole responsibility of, Tenant",
         "citation": "[Paragraph 126] Electricity for all receptacles on the Premises and for all lighting on the Premises and DDC boxes for ventilation and secondary heating shall be separately metered and billed directly to, and be the sole responsibility of, Tenant by Commonwealth Edison.",
         "confidence": 0.95,
         "source_locations": [
-          "Paragraph 126"
+          "[Paragraph 126]"
         ]
       },
       "parking_spaces": {
@@ -251,25 +248,25 @@
     }
   ],
   "metadata": {
-    "model_calls": 8,
+    "model_calls": 11,
     "failed_calls": 0,
     "parse_failures": 0,
-    "tokens_in": 71587,
-    "tokens_out": 23961,
-    "cost_usd": 0.36970275,
-    "latency_ms": 220016,
+    "tokens_in": 85483,
+    "tokens_out": 26235,
+    "cost_usd": 0.418177,
+    "latency_ms": 251722,
     "models": {
       "google/gemini-3.8-flash": {
-        "calls": 1,
-        "tokens_in": 7909,
-        "tokens_out": 6196,
-        "cost_usd": 0.02916675
+        "calls": 2,
+        "tokens_in": 15629,
+        "tokens_out": 5827,
+        "cost_usd": 0.033573
       },
       "google/gemini-3.1-pro-preview": {
-        "calls": 7,
-        "tokens_in": 63678,
-        "tokens_out": 17765,
-        "cost_usd": 0.340536
+        "calls": 9,
+        "tokens_in": 69854,
+        "tokens_out": 20408,
+        "cost_usd": 0.38460399999999995
       }
     },
     "planner_version": "schema-aware-v1",

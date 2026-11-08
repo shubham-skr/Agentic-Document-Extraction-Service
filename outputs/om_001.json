@@ -236,7 +236,7 @@
     "tokens_in": 0,
     "tokens_out": 0,
     "cost_usd": 0.0,
-    "latency_ms": 1718,
+    "latency_ms": 1273,
     "models": {},
     "planner_version": "deterministic-route",
     "document_complexity": "low",

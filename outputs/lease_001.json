@@ -2,107 +2,120 @@
   "entries": [
     {
       "tenant_name": {
-        "value": "M.J. Delacroix & Associates, P.C.",
-        "citation": "M.J. Delacroix & Associates, P.C.\n900 Corporate Lane, Suite 210\nTENANT'S ADDRESS:",
-        "confidence": 0.8
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "landlord_legal_name": {
-        "value": "TRENT MA-II HOLLIS OFFICE PLAZA, INC.",
-        "citation": "TRENT MA-II HOLLIS OFFICE PLAZA, INC.\n1850 Hollis Road, Suite 120E\nLANDLORD'S ADDRESS:",
-        "confidence": 0.8
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "property_name": {
         "value": "Hollis Office Plaza",
-        "citation": "Hollis Office Plaza",
-        "confidence": 0.8
+        "citation": "on . Hollis Office Plaza",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ],
+        "source_locations": [
+          "REFERENCE PAGE"
+        ]
       },
       "building_address": {
         "value": "1850 Hollis Road, Fairmont Hills, Illinois 60517",
-        "citation": "1850 Hollis Road\n‘ BUILDING: Fairmont Hills, Illinois 60517",
-        "confidence": 0.8
+        "citation": ". 1850 Hollis Road\n‘ BUILDING: Fairmont Hills, Illinois 60517",
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ],
+        "source_locations": [
+          "REFERENCE PAGE"
+        ]
       },
       "premises": {
         "value": "Second Floor, West Section, Suite 214W",
         "citation": "PREMISES: Second Floor, West Section, Suite 214W",
-        "confidence": 0.8
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ],
+        "source_locations": [
+          "REFERENCE PAGE"
+        ]
       },
       "rentable_square_footage": {
         "value": 1892,
         "citation": "PREMISES RENTABLE AREA: approximately 1,892 square feet",
-        "confidence": 0.8
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ],
+        "source_locations": [
+          "REFERENCE PAGE"
+        ]
       },
       "pro_rata_share": {
-        "value": "0.91",
-        "citation": "TENANT'S PROPORTIONATE SHARE: 0.91 %",
-        "confidence": 0.99,
-        "page_numbers": [
-          2,
-          8,
-          15
-        ]
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "permitted_use": {
         "value": "General Office: Architecture",
         "citation": "USE: General Office: Architecture",
-        "confidence": 0.8
+        "confidence": 0.95
       },
       "lease_execution_date": {
         "value": "1993-03-05",
         "citation": "LEASE REFERENCE DATE: March 5 , 19° 93",
-        "confidence": 0.9
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
       },
       "lease_commencement_date": {
         "value": "1993-05-01",
         "citation": "COMMENCEMENT DATE: May 1 , 19° 93",
-        "confidence": 0.95
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
       },
       "rent_commencement_date": {
         "value": "1993-05-01",
-        "citation": "COMMENCEMENT DATE: May 1 , 19° 93",
+        "citation": "Rent on or before the first day of each full calendar month during the Term, except that the first\nmonth's rent shall be paid upon the execution hereof.",
         "confidence": 0.9
       },
       "lease_expiration_date": {
         "value": "1998-04-30",
         "citation": "TERMINATION DATE: April 30 , 19° 98",
-        "confidence": 0.95
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
       },
       "lease_term_months": {
         "value": 60,
         "citation": "TERM OF LEASE: Five years and_ no months",
-        "confidence": 0.95
+        "confidence": 0.99,
+        "page_numbers": [
+          2
+        ]
       },
       "rent_schedule_start_dates": {
-        "value": [
-          "1993-05-01",
-          "1994-05-01",
-          "1995-05-01",
-          "1996-05-01",
-          "1997-05-01"
-        ],
-        "citation": "[Page 18] 05/01/93 - 04/30/94 $ 23,184 $ 1,932 12 $ 23.184\n[Page 18] 05/01/94 - 04/30/95 $ 23.880 $ 1,990 12 $ 23.880\n[Page 18] 05/01/95 - 04/30/96 $ 24.600 $ 2.050 12 $ 24.600\n[Page 18] 05/01/96 - 04/30/97 $ 25,332 $ 2.111 12 $ 25,332\n[Page 18] 05/01/97 - 04/30/98 $ 26.088 $ 2.174 12 $ 26,088 60 $ 123,084 44, CORPORATE AUTHORITY. If Tenant is a corporation, Tenant represents and warrants that this Lease and the undersigned's execution of this Lease has been duly authorized and approved by the corporation's Board of Dir",
-        "confidence": 0.97
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "rent_schedule_end_dates": {
-        "value": [
-          "1994-04-30",
-          "1995-04-30",
-          "1996-04-30",
-          "1997-04-30",
-          "1998-04-30"
-        ],
-        "citation": "[Page 18] 05/01/93 - 04/30/94 $ 23,184 $ 1,932 12 $ 23.184\n[Page 18] 05/01/94 - 04/30/95 $ 23.880 $ 1,990 12 $ 23.880\n[Page 18] 05/01/95 - 04/30/96 $ 24.600 $ 2.050 12 $ 24.600\n[Page 18] 05/01/96 - 04/30/97 $ 25,332 $ 2.111 12 $ 25,332\n[Page 18] 05/01/97 - 04/30/98 $ 26.088 $ 2.174 12 $ 26,088 60 $ 123,084 44, CORPORATE AUTHORITY. If Tenant is a corporation, Tenant represents and warrants that this Lease and the undersigned's execution of this Lease has been duly authorized and approved by the corporation's Board of Dir",
-        "confidence": 0.97
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "rent_schedule_monthly_rent": {
-        "value": [
-          1932.0,
-          1990.0,
-          2050.0,
-          2111.0,
-          2174.0
-        ],
-        "citation": "[Page 18] 05/01/93 - 04/30/94 $ 23,184 $ 1,932 12 $ 23.184\n[Page 18] 05/01/94 - 04/30/95 $ 23.880 $ 1,990 12 $ 23.880\n[Page 18] 05/01/95 - 04/30/96 $ 24.600 $ 2.050 12 $ 24.600\n[Page 18] 05/01/96 - 04/30/97 $ 25,332 $ 2.111 12 $ 25,332\n[Page 18] 05/01/97 - 04/30/98 $ 26.088 $ 2.174 12 $ 26,088 60 $ 123,084 44, CORPORATE AUTHORITY. If Tenant is a corporation, Tenant represents and warrants that this Lease and the undersigned's execution of this Lease has been duly authorized and approved by the corporation's Board of Dir",
-        "confidence": 0.97
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "rent_schedule_annual_rent_per_rsf": {
         "value": null,
@@ -110,49 +123,41 @@
         "confidence": 0.0
       },
       "total_base_rent": {
-        "value": 123084.0,
-        "citation": "[Page 18] 05/01/93 - 04/30/94 $ 23,184 $ 1,932 12 $ 23.184\n[Page 18] 05/01/94 - 04/30/95 $ 23.880 $ 1,990 12 $ 23.880\n[Page 18] 05/01/95 - 04/30/96 $ 24.600 $ 2.050 12 $ 24.600\n[Page 18] 05/01/96 - 04/30/97 $ 25,332 $ 2.111 12 $ 25,332\n[Page 18] 05/01/97 - 04/30/98 $ 26.088 $ 2.174 12 $ 26,088 60 $ 123,084 44, CORPORATE AUTHORITY. If Tenant is a corporation, Tenant represents and warrants that this Lease and the undersigned's execution of this Lease has been duly authorized and approved by the corporation's Board of Dir",
-        "confidence": 0.96
-      },
-      "base_rent_escalation": {
-        "value": "See Article 43; CPI Escalation N/A",
-        "citation": "ANNUAL BASE RENT: See Article 43\nMONTHLY INSTALLMENT OF RENT: See Article 43\nSECURITY DEPOSIT: $2406 21 50M Delgerpie\nCPI ESCALATION PERCENTAGE: N/A %",
-        "confidence": 0.85,
-        "page_numbers": [
-          11
-        ]
-      },
-      "free_rent_months": {
-        "value": 0,
-        "citation": "Tenant agrees to pay to Landlord the Annual Rent by paying the Monthly Installment of\nRent on or before the first day of each full calendar month during the Term, except that the first\nmonth's rent shall be paid upon the execution hereof.",
-        "confidence": 0.9
-      },
-      "security_deposit_amount": {
-        "value": 2406.21,
-        "citation": "SECURITY DEPOSIT: $2406 21",
-        "confidence": 0.9,
-        "page_numbers": [
-          8,
-          11,
-          14,
-          17,
-          20
-        ]
-      },
-      "letter_of_credit_required": {
         "value": null,
         "citation": "",
         "confidence": 0.0
       },
-      "expense_structure": {
-        "value": "Base year 1993 for direct expenses and taxes",
-        "citation": "BASE YEAR (DIRECT EXPENSES): 19 93\nOR\nEXPENSE STOP: $ 0.00 per square foot\nBASE YEAR (TAXES): 19 93",
-        "confidence": 0.95,
+      "base_rent_escalation": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "free_rent_months": {
+        "value": 0,
+        "citation": "Rent on or before the first day of each full calendar month during the Term, except that the first\nmonth's rent shall be paid upon the execution hereof.",
+        "confidence": 0.85,
         "page_numbers": [
-          2,
-          8,
-          20
+          3,
+          17
         ]
+      },
+      "security_deposit_amount": {
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
+      },
+      "letter_of_credit_required": {
+        "value": false,
+        "citation": "[Page 4] 6. SECURITY DEPOSIT. Tenant has deposited with Landlord the Security Deposit. Said sum shall be held by Landlord as security for the faithful performance by Tenant of all the terms, covenants and conditions of this Lease to be kept and performed by Tenant and not as an advance rental deposit",
+        "confidence": 0.5,
+        "page_numbers": [
+          4
+        ]
+      },
+      "expense_structure": {
+        "value": "Base Year",
+        "citation": "If, in any calendar year of the Term, Tenant's Proportionate Share of Direct Expenses paid or incurred shall exceed the Base Year specified on the Reference Page",
+        "confidence": 0.95
       },
       "base_year_expenses": {
         "value": 1993,
@@ -165,9 +170,9 @@
         "confidence": 0.99
       },
       "electricity_provision": {
-        "value": "electricity for lighting, convenience outlets and other direct uses",
-        "citation": "(f)\nelectricity for lighting, convenience outlets and other direct uses.",
-        "confidence": 0.95
+        "value": null,
+        "citation": "",
+        "confidence": 0.0
       },
       "parking_spaces": {
         "value": null,
@@ -185,14 +190,14 @@
         "confidence": 0.0
       },
       "renewal_option_exists": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": false,
+        "citation": "acceptance by Landlord of rent after such termination shall not constitute a renewal",
+        "confidence": 0.9
       },
       "renewal_options_count": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": 0,
+        "citation": "acceptance by Landlord of rent after such termination shall not constitute a renewal",
+        "confidence": 0.9
       },
       "renewal_term_months": {
         "value": null,
@@ -205,9 +210,12 @@
         "confidence": 0.0
       },
       "early_termination_right": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": true,
+        "citation": "Tenant shall have the option to terminate this Lease unless said delay is as a result of: (a) Tenant's failure to agree to plans and specifications; (b) Tenant's request for materials, finishes or installations other than",
+        "confidence": 0.85,
+        "page_numbers": [
+          3
+        ]
       },
       "termination_fee_description": {
         "value": null,
@@ -215,9 +223,12 @@
         "confidence": 0.0
       },
       "right_to_sublet": {
-        "value": null,
-        "citation": "",
-        "confidence": 0.0
+        "value": "without the prior written consent of Landlord",
+        "citation": "Tenant shall not have the right to assign or pledge this Lease or to sublet the whole or any\npart of the Premises, whether voluntarily or by operation of law, or permit the use or occupancy\nof the Premises by anyone other than Tenant, or assign this Lease for security purposes, without\nthe prior written consent of Landlord",
+        "confidence": 0.95,
+        "page_numbers": [
+          6
+        ]
       },
       "guarantor_name": {
         "value": null,
@@ -229,40 +240,59 @@
           "Meridian Commercial Realty Group, Inc."
         ],
         "citation": "REAL ESTATE BROKER DUE COMMISSION: Meridian Commercial Realty Group, Inc.",
-        "confidence": 0.98
+        "confidence": 0.95,
+        "page_numbers": [
+          2
+        ]
       },
       "late_fee": {
         "value": "greater of: (a) $75.00, or (b) a sum equal to 6% of the unpaid rent or other payment",
-        "citation": "such amount shall be increased by a late charge in an amount equal to the greater of: (a) $75.00, or (b) a sum equal to 6% of the unpaid rent or other payment.",
-        "confidence": 0.98
+        "citation": "equal to the greater of: (a) $75.00, or (b) a sum equal to 6% of the unpaid rent or other\npayment.",
+        "confidence": 0.95,
+        "page_numbers": [
+          3
+        ]
       },
       "holdover_rent": {
-        "value": "150% of the amount of the Annual Rent for the last period prior to the date of such termination plus all Rent Adjustments as provided for in Article 41 prorated on a daily basis",
-        "citation": "150% of the amount of the Annual Rent for the last period prior to the date of such termination plus all Rent Adjustments as provided for in Article 41 prorated on a daily basis",
-        "confidence": 0.98
+        "value": "150% of the amount of the Annual Rent for the last period prior to the date of such termination plus all Rent Adjustments as provided for in Article 41",
+        "citation": "150% of the amount of the Annual\nRent for the last period prior to the date of such termination plus all Rent Adjustments as\nprovided for in Article 41",
+        "confidence": 0.95,
+        "page_numbers": [
+          3,
+          8,
+          9,
+          12,
+          15
+        ]
       }
     }
   ],
   "metadata": {
-    "model_calls": 8,
+    "model_calls": 13,
     "failed_calls": 0,
     "parse_failures": 0,
-    "tokens_in": 78347,
-    "tokens_out": 22780,
-    "cost_usd": 0.368097,
-    "latency_ms": 220485,
+    "tokens_in": 97166,
+    "tokens_out": 29873,
+    "cost_usd": 0.4557854999999999,
+    "latency_ms": 283750,
     "models": {
       "google/gemini-3.8-flash": {
-        "calls": 1,
-        "tokens_in": 8672,
-        "tokens_out": 6196,
-        "cost_usd": 0.029739
+        "calls": 2,
+        "tokens_in": 16744,
+        "tokens_out": 8242,
+        "cost_usd": 0.0434655
       },
       "google/gemini-3.1-pro-preview": {
-        "calls": 7,
-        "tokens_in": 69675,
-        "tokens_out": 16584,
-        "cost_usd": 0.338358
+        "calls": 10,
+        "tokens_in": 77658,
+        "tokens_out": 21417,
+        "cost_usd": 0.4123199999999999
+      },
+      "z-ai/glm-5.3-flash": {
+        "calls": 1,
+        "tokens_in": 2764,
+        "tokens_out": 214,
+        "cost_usd": 0.0
       }
     },
     "planner_version": "schema-aware-v1",
