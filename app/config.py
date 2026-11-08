@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Settings:
     llm_base_url = os.getenv('LLM_BASE_URL', 'https://openrouter.ai/api/v1').rstrip('/')

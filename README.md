@@ -22,6 +22,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+chmod 600 .env
 # edit .env and provide your OpenRouter key
 uvicorn app.main:app --reload --port 8080
 ```
@@ -77,3 +78,8 @@ The deterministic CSV/XLSX parsers are locally regression-tested against the sup
 - Official validator against the supplied truth: box score 1.000, rent roll 1.000, T12 1.000.
 - FastAPI health, asynchronous job completion for the rent-roll workbook, and tenant-isolated 404 were exercised with the local test client.
 - Docker was not available in the build environment, so the actual `docker compose up` image build must be verified on the submission machine.
+
+
+## Rebuild the submission ZIP
+
+After generating all eight outputs and confirming the validator, run `scripts/package_submission.sh`. It includes the `.git` history and excludes `.env`, virtual environments, uploaded sample documents, and ground-truth answers.
