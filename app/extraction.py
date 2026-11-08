@@ -21,21 +21,18 @@ def infer_type(key,desc):
  if any(x in s for x in ['date','yyyy-mm','period_start','period_end']): return 'date'
  if any(x in s for x in ['as a number','number.','amount','square footage','rent','price','count','months','year','percentage','percent','ratio','spaces','units','sf','sq ft','noi','balance','deposit','variance','budget','occupancy','cap rate','term_months','% occ','% trend']) or key in {'avail','down','admin','model','units','p_occ_wornonrev','p_trend'}: return 'number'
  return 'string'
-async def normalize_schema(llm,schema,profile):
- fields=schema['fields']; payload={}
- if profile.get('format') in ('xlsx','csv'):
-  return {k:{'description':v.get('description',''),'type':infer_type(k,v.get('description','')),'scope':'row' if v.get('primary') else 'document_or_row'} for k,v in fields.items()}
- for k,v in fields.items():
-  payload[k]={'name':v.get('name',k),'description':v.get('description',''),'primary':bool(v.get('primary')),'inferred_type':infer_type(k,v.get('description',''))}
- prompt={"task":"Normalize client field descriptions without changing intent or keys.","document_profile":profile,"fields":payload,"instructions":["Return one normalized specification per exact input key.","Clarify what value is wanted, synonyms, exclusions/confusable concepts, scope (document or row), cardinality (single or list), type and useful retrieval terms.","Do not invent facts about this document; profile is provisional.","Keep list cardinality only when description implies multiple values.","Return JSON object keyed by original field keys."]}
- try:
-  raw=await llm.complete([{'role':'system','content':'You normalize extraction schemas. Preserve semantics. Return JSON only.'},{'role':'user','content':json.dumps(prompt,ensure_ascii=False)}],model=settings.fast_model,max_tokens=5000)
-  normalized=parse_json(raw)
-  if not isinstance(normalized,dict): raise ValueError('normalizer did not return object')
-  return {k:normalized.get(k,{'description':v.get('description',''),'type':infer_type(k,v.get('description',''))}) for k,v in payload.items()}
- except Exception as e:
-  log.warning('Schema normalization fallback: %s',e)
-  return {k:{'description':v.get('description',''),'type':v['inferred_type'],'scope':'row' if v.get('primary') else 'document_or_row'} for k,v in payload.items()}
+async def normalize_schema(llm, schema, profile):
+ """Deterministically normalize field specs; avoid a fragile, low-value extra LLM call."""
+ normalized = {}
+ for key, field in schema['fields'].items():
+  desc = field.get('description', '')
+  normalized[key] = {
+   'description': desc,
+   'type': infer_type(key, desc),
+   'scope': 'row' if field.get('primary') else 'document_or_row',
+   'aliases': [],
+  }
+ return normalized
 
 def profile_document(parsed):
  text=parsed['text'][:50000]
@@ -82,19 +79,44 @@ def _clean_value(v, typ):
  return v
 
 def empty_field(): return {'value':None,'citation':'','confidence':0.0}
+def _confidence(value, default=0.5):
+ try:
+  number=float(value)
+  if not __import__('math').isfinite(number): return default
+  return max(0.0,min(1.0,number))
+ except (TypeError,ValueError):
+  return default
 def make_field(value,citation='',confidence=.8,pages=None,locations=None,typ='string',item_type=None):
  if isinstance(value,list): value=[_clean_value(x,item_type or 'string') for x in value]
  else: value=_clean_value(value,typ)
- out={'value':value,'citation':citation if value is not None else '', 'confidence':float(max(0,min(1,confidence))) if value is not None else 0.0}
- if pages:out['page_numbers']=sorted(set(int(x) for x in pages if int(x)>0))
- if locations:out['source_locations']=list(dict.fromkeys(locations))
+ if isinstance(value,float) and not __import__('math').isfinite(value): value=None
+ out={'value':value,'citation':str(citation or '') if value is not None else '', 'confidence':_confidence(confidence) if value is not None else 0.0}
+ clean_pages=[]
+ for page in pages or []:
+  try:
+   n=int(page)
+   if n>0: clean_pages.append(n)
+  except (TypeError,ValueError): pass
+ if clean_pages: out['page_numbers']=sorted(set(clean_pages))
+ clean_locations=[str(x) for x in (locations or []) if x is not None and str(x).strip()]
+ if clean_locations: out['source_locations']=list(dict.fromkeys(clean_locations))
  return out
 
 def _citation_ok(citation, source):
- if not citation:return False
- # citations include a locator and a source excerpt; fuzzy containment is deliberately tolerant to OCR spacing.
- q=re.sub(r'\W+',' ',citation.lower()).strip(); s=re.sub(r'\W+',' ',source.lower())
- return len(q)>8 and (q[:min(45,len(q))] in s or all(t in s for t in q.split()[:6]))
+ if not citation or not source: return False
+ # Keep the locator for display, but compare only the claimed verbatim excerpt.
+ excerpt=re.sub(r'^\s*\[[^]]+\]\s*', '', str(citation)).strip()
+ if not excerpt: return False
+ norm=lambda x: re.sub(r'[^a-z0-9]+',' ',str(x).lower()).strip()
+ q=norm(excerpt); src=norm(source)
+ if len(q)>8 and q in src: return True
+ tokens=[t for t in q.split() if len(t)>2 and t not in {'the','and','for','from','with','that','this','are','was','were','has','have'}]
+ if not tokens: return False
+ # Some model citations add field labels or punctuation; require a strong content-token
+ # overlap rather than rejecting a citation because its locator wording differs.
+ unique=set(tokens)
+ present=sum(1 for t in unique if t in src)
+ return present >= min(4, max(2, int(len(unique)*0.55)))
 
 def retrieve(text, spec, max_chars=18000):
  terms=set(re.findall(r'[a-z0-9]{3,}',(spec.get('description','')+' '+' '.join(spec.get('aliases',[]) if isinstance(spec.get('aliases'),list) else [])).lower()))
@@ -131,7 +153,12 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
    payload={'task':'Extract every detail row belonging to the requested table on this page. Do not emit section headers, subtotals, grand totals or commentary-only rows.','document_profile':profile,'schema':schema,'page_number':page_no,'page_text':page_text,'document_context':text[:5000],'output_format':{'entries':[{'field_key':{'value':'scalar or null','citation':'[Page N] verbatim source excerpt','confidence':'0..1','page_numbers':[page_no]}}]},'rules':['Return all schema fields in every row.','The primary field identifies one row.','Do not invent missing values.','Use null for unsupported values.','Only rows physically present on this page.']}
    try:
     raw=await llm.complete([{'role':'system','content':SYSTEM+' You are extracting table rows. Return JSON only with an entries array.'},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}],model=settings.fast_model,max_tokens=6500)
-    obj=parse_json(raw); arr=obj.get('entries',[]) if isinstance(obj,dict) else []
+    try:
+     obj=parse_json(raw)
+    except Exception:
+     llm.parse_failures += 1
+     raise
+    arr=obj.get('entries',[]) if isinstance(obj,dict) else []
     good=[]
     for item in arr if isinstance(arr,list) else []:
      if not isinstance(item,dict): continue
@@ -156,14 +183,18 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
  groups=[]
  keys=list(fields)
  # Keep arrays and related lease schedule fields together; use modest groups otherwise.
- for i in range(0,len(keys),6):groups.append(keys[i:i+6])
+ for i in range(0,len(keys),4):groups.append(keys[i:i+4])
  async def extract_group(group):
   fobj={k:{'name':fields[k].get('name',k),'description':fields[k].get('description',''),'normalized':normalized.get(k,{}),'primary':fields[k].get('primary',False)} for k in group}
-  evidence='\n\n'.join(f'--- EVIDENCE FOR {k} ---\n{retrieve(text,normalized.get(k,{}),max_chars=5500)}' for k in group)
+  evidence='\n\n'.join(f'--- EVIDENCE FOR {k} ---\n{retrieve(text,normalized.get(k,{}),max_chars=3600)}' for k in group)
   user={'document_profile':profile,'fields':fobj,'source_evidence':evidence,'required_output':{k:{'value':'scalar | array | null','citation':'verbatim excerpt prefixed with actual locator','confidence':'0..1','page_numbers':'optional array of 1-based page numbers','source_locations':'optional cell refs'} for k in group},'rules':['Return exactly these keys.','No facts outside source evidence.','For null use empty citation and confidence 0.','If multiple values are requested, return aligned arrays.','For PDF cite [Page N], for DOCX cite [Paragraph N] or [Table N row N], for spreadsheets cite [Sheet!Cell] or [Row N].']}
   try:
-   raw=await llm.complete([{'role':'system','content':SYSTEM},{'role':'user','content':json.dumps(user,ensure_ascii=False)}],model=settings.fast_model,max_tokens=5000)
-   obj=parse_json(raw)
+   raw=await llm.complete([{'role':'system','content':SYSTEM},{'role':'user','content':json.dumps(user,ensure_ascii=False)}],model=settings.fast_model,max_tokens=3000)
+   try:
+    obj=parse_json(raw)
+   except Exception:
+    llm.parse_failures += 1
+    raise
    if isinstance(obj,dict) and isinstance(obj.get('fields'),dict):obj=obj['fields']
    result={}
    for k in group:
@@ -178,7 +209,8 @@ async def llm_extract(llm, schema, normalized, parsed, profile):
     result[k]=make_field(val,cit,item.get('confidence',.65),pages,locs,typ,_array_item_type(k,fields[k].get('description','')))
    return result
   except Exception as e:
-   log.exception('Extraction group failed: %s',e)
+   log.warning('Extraction group failed; returning nulls for %s: %s', ', '.join(group), e)
+   llm.failed_calls += 1
    return {k:empty_field() for k in group}
  merged={}
  group_results=await asyncio.gather(*(extract_group(g) for g in groups))
@@ -370,7 +402,7 @@ async def reasoning_review(llm, parsed, schema, normalized, entries):
  for k,v in fields.items():
   item=entry.get(k,{})
   if item.get('value') is None:continue
-  if float(item.get('confidence',0))<0.68 or any(x in k.lower() for x in important):
+  if any(x in k.lower() for x in important) and _confidence(item.get('confidence',0))<0.8:
    targets.append(k)
  if not targets:return entries
  targets=targets[:5]
@@ -398,7 +430,7 @@ async def vision_review(llm, parsed, schema, normalized, entries):
   if item.get('value') is None: continue
   desc=(k+' '+v.get('description','')).lower()
   high_risk=any(x in desc for x in ['security deposit','handwritten','amendment','guarantor'])
-  low_conf=float(item.get('confidence',0))<0.72
+  low_conf=_confidence(item.get('confidence',0))<0.55
   pages=item.get('page_numbers') or [int(x) for x in re.findall(r'\[Page\s+(\d+)\]',item.get('citation',''),re.I)]
   page=next((p for p in pages if p in ocr_pages),None)
   if page and (high_risk or low_conf): targets.append((k,page))
@@ -445,7 +477,7 @@ async def run_pipeline(path,schema):
  if primary and (not entries or not any(e.get(primary,{}).get('value') is not None for e in entries)):
   log.warning('Primary key missing; attempting LLM table extraction')
   try:
-   raw=await llm.complete([{'role':'system','content':SYSTEM+' Extract all table rows. Return {"entries":[{field_key:{"value":...,"citation":...,"confidence":...}}]}.'},{'role':'user','content':json.dumps({'schema':schema,'document':parsed['text'][:50000]},ensure_ascii=False)}],model=settings.strong_model,max_tokens=8000)
+   raw=await llm.complete([{'role':'system','content':SYSTEM+' Extract all table rows. Return {"entries":[{field_key:{"value":...,"citation":...,"confidence":...}}]}.'},{'role':'user','content':json.dumps({'schema':schema,'document':parsed['text'][:50000]},ensure_ascii=False)}],model=settings.strong_model,max_tokens=5000)
    obj=parse_json(raw); candidate=obj.get('entries',[])
    if isinstance(candidate,list) and candidate: entries=candidate
   except Exception: pass
@@ -461,5 +493,5 @@ async def run_pipeline(path,schema):
   fixed.append(row)
  # For primary key table schemas, drop rows without primary key; preserve document-level one-row fallback.
  if primary and len(fixed)>1: fixed=[r for r in fixed if r[primary]['value'] is not None]
- result={'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-started)*1000),'models':llm.by_model}}
+ result={'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'parse_failures':llm.parse_failures,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-started)*1000),'models':llm.by_model}}
  return result

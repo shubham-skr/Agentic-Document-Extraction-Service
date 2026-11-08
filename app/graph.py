@@ -33,4 +33,4 @@ async def execute(path,schema):
  for e in entries:
   fixed.append({k:make_field((e.get(k) or {}).get('value'),(e.get(k) or {}).get('citation',''),(e.get(k) or {}).get('confidence',0),(e.get(k) or {}).get('page_numbers'),(e.get(k) or {}).get('source_locations'),state['normalized'].get(k,{}).get('type') or infer_type(k,v.get('description',''))) for k,v in fields.items()})
  if primary and len(fixed)>1:fixed=[r for r in fixed if r[primary]['value'] is not None]
- return {'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-start)*1000),'models':llm.by_model}}
+ return {'entries':fixed,'metadata':{'model_calls':llm.calls,'failed_calls':llm.failed_calls,'parse_failures':llm.parse_failures,'tokens_in':llm.tokens_in,'tokens_out':llm.tokens_out,'cost_usd':llm.cost_usd,'latency_ms':int((time.perf_counter()-start)*1000),'models':llm.by_model}}

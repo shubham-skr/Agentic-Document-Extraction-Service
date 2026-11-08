@@ -1,4 +1,5 @@
 import asyncio, hashlib, json, logging, os, uuid, time
+from datetime import datetime, timezone
 from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, Form, Header, HTTPException, BackgroundTasks
@@ -10,7 +11,7 @@ from .graph import execute
 logging.basicConfig(level=getattr(logging,settings.log_level.upper(),logging.INFO),format='%(asctime)s %(levelname)s %(name)s %(message)s')
 log=logging.getLogger('outcome')
 TERMINAL={'SUCCESS','PARTIAL','FAILED'}
-active=0; active_lock=asyncio.Lock(); MAX_ACTIVE=max(10,settings.max_workers*3); background_tasks=set()
+active=0; active_lock=asyncio.Lock(); MAX_ACTIVE=10; background_tasks=set()
 @asynccontextmanager
 async def lifespan(app:FastAPI):
  init_db()
@@ -32,15 +33,25 @@ async def _run(job_id):
   if not row:return
   update_job(job_id,status='RUNNING',stage='PARSING')
   schema=json.loads(row['schema_json'])
-  result=await execute(row['file_path'],schema)
+  created_at=datetime.fromisoformat(row['created_at'])
+  if created_at.tzinfo is None: created_at=created_at.replace(tzinfo=timezone.utc)
+  elapsed=max(0.0,time.time()-created_at.timestamp())
+  remaining=settings.job_timeout_seconds-elapsed
+  if remaining<=0: raise asyncio.TimeoutError()
+  result=await asyncio.wait_for(execute(row['file_path'],schema), timeout=remaining)
   # Ensure output is JSON-serializable before persisting.
   json.dumps(result,allow_nan=False)
   final_status='PARTIAL' if result.get('metadata',{}).get('failed_calls',0)>0 else 'SUCCESS'
+  if result.get('metadata',{}).get('parse_failures',0) or result.get('metadata',{}).get('failed_calls',0):
+   final_status='PARTIAL'
   update_job(job_id,status=final_status,stage='COMPLETE',result=result)
   if row.get('webhook_url'):
    try:
     async with httpx.AsyncClient(timeout=10) as client: await client.post(row['webhook_url'],json={'job_id':job_id,'status':final_status,'result':result})
    except Exception: log.exception('Webhook delivery failed for %s',job_id)
+ except asyncio.TimeoutError:
+  log.error('Job %s exceeded hard extraction deadline of %ss',job_id,settings.job_timeout_seconds)
+  update_job(job_id,status='FAILED',stage='FAILED',error={'code':'JOB_TIMEOUT','message':f'Extraction exceeded {settings.job_timeout_seconds} seconds'})
  except Exception as e:
   log.exception('Job %s failed',job_id)
   update_job(job_id,status='FAILED',stage='FAILED',error={'code':'EXTRACTION_FAILED','message':str(e)[:1000]})

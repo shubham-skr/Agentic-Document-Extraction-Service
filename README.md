@@ -29,13 +29,13 @@ uvicorn app.main:app --reload --port 8080
 
 ## Architecture
 
-- LangGraph StateGraph: parse → profile → normalize schema → extract.
+- LangGraph StateGraph: parse → profile → deterministic schema typing → extract.
 - PDF: PyMuPDF native text and positioned blocks; scanned pages use parallel Tesseract OCR.
 - DOCX: paragraphs and Word tables with source locators.
 - XLSX/CSV: native cell/row parsing; rent-roll charge blocks and T12 line items are handled deterministically.
-- Schema normalization: inexpensive allowed model rewrites descriptions into extraction guidance without changing field keys.
-- Extraction: grouped field calls, evidence-focused retrieval, strict JSON and citations. All provider calls use `LLM_BASE_URL` and `LLM_API_KEY`.
-- Verification: citation support checks, type normalization, deterministic arithmetic for tabular totals, schema-complete serialization.
+- Schema normalization: deterministic typing from the supplied field names and descriptions; it makes no extra API call and preserves the original field semantics.
+- Extraction: groups of four fields, evidence-focused retrieval, provider JSON mode with standard-library recovery for malformed or truncated responses, and source citations. All provider calls use `LLM_BASE_URL` and `LLM_API_KEY`.
+- Verification: citation support checks, robust numeric confidence coercion, type normalization, deterministic arithmetic for tabular totals, and schema-complete serialization.
 - Service: FastAPI async jobs, SQLite persistence, tenant-scoped reads, idempotency, bounded concurrency, retry/backoff for provider throttling, terminal-state protection.
 
 ## Configuration
@@ -55,7 +55,7 @@ Sample documents and ground-truth answers are deliberately excluded from the sub
 unzip -q /path/to/Outcome_Take_Home_Assignment.zip 'sample/sample-data-documents/*' 'sample/sample-data-output-validated/*' -d .
 ```
 
-Then run `scripts/generate_samples.sh`. The script runs the official validator and compares against truth when that folder is present. The three deterministic outputs currently included in `outputs/` score 1.000 each (box score, rent roll and T12); the remaining five require the configured LLM key. Run the CLI against a supplied document individually with:
+Then activate `.venv`, put a newly issued key in `.env`, and run `bash scripts/run_local_samples.sh "/absolute/path/Outcome_Take_Home_Assignment.zip"`. The script restores the sample inputs/truth, rebuilds the Docker service, submits all eight documents concurrently through the actual API, saves their results, and validates every output against ground truth. The three deterministic outputs currently included in `outputs/` score 1.000 each (box score, rent roll and T12); the remaining five require the configured LLM key. Run the CLI against a supplied document individually with:
 
 ```bash
 python -m app.cli --file sample/sample-data-documents/lease_002.docx \
@@ -64,20 +64,20 @@ python -m app.cli --file sample/sample-data-documents/lease_002.docx \
 
 ## Evaluation status
 
-The repository includes the official validator and output contract. Populate `outputs/` with results from your final local run and record the validator score here before submission. Do not claim scores that have not been measured.
+The official validator is included. The three deterministic spreadsheet/CSV outputs currently present in `outputs/` score 1.000 each against the supplied truth. The five semantic PDF/DOCX outputs must be generated with a valid OpenRouter key using `scripts/run_local_samples.sh`; do not claim a final eight-document score until that validator run completes.
 
 ## Sample evaluation note
 
-The deterministic CSV/XLSX parsers are locally regression-tested against the supplied sample truth (box score, rent roll and T12). Narrative PDF/DOCX extraction requires a configured OpenRouter key; generate those outputs with `scripts/generate_samples.sh` and retain only generated result JSON in `outputs/`. The final measured eight-document score must be added here after running the official validator; no unmeasured score is claimed.
+The deterministic CSV/XLSX parsers are regression-tested against the supplied sample truth (box score, rent roll and T12). Narrative PDF/DOCX extraction requires a configured OpenRouter key; generate those outputs with `scripts/run_local_samples.sh` and retain only generated result JSON in `outputs/`. The final measured eight-document score must be added here after running the official validator; no unmeasured score is claimed.
 
 
 ## Verified locally
 
 - `python -m compileall -q app tests`: passed.
-- `python -m pytest -q`: 3 passed.
+- `python -m pytest -q`: 10 passed (JSON recovery, confidence coercion, SQLite commit persistence, mocked DOCX extraction path, and API job lifecycle).
 - Official validator against the supplied truth: box score 1.000, rent roll 1.000, T12 1.000.
-- FastAPI health, asynchronous job completion for the rent-roll workbook, and tenant-isolated 404 were exercised with the local test client.
-- Docker was not available in the build environment, so the actual `docker compose up` image build must be verified on the submission machine.
+- FastAPI API test: POST returned in under 2 seconds and a deterministic CSV job reached SUCCESS. A separate 10-job concurrent CSV test accepted all 10 and all reached SUCCESS; maximum POST latency was 0.046 seconds. These API tests did not exercise live LLM throughput.
+- Docker was not available in this build environment. The sample runner rebuilds and tests the Docker service on the submission machine before evaluating all eight samples.
 
 
 ## Rebuild the submission ZIP
